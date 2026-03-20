@@ -1,0 +1,112 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{parskip}
+
+\title{\textbf{Aufgabe 11 -- Lösung} \\ Methoden I: Mathematik, 2026S}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Angabe}
+
+Kostenfunktion für die Herstellung von $Q$ Einheiten:
+\[
+    C(Q) = 12000 + 7Q + 0{,}0015\,Q^2 + 0{,}2\,Q^3
+\]
+
+% ============================================================
+\section*{Teil 1: Kosten für 15 Einheiten}
+
+Einfach $Q = 15$ einsetzen:
+
+\begin{align*}
+    C(15) &= 12000 + 7 \cdot 15 + 0{,}0015 \cdot 15^2 + 0{,}2 \cdot 15^3 \\[6pt]
+    &= 12000 + 105 + 0{,}0015 \cdot 225 + 0{,}2 \cdot 3375 \\[6pt]
+    &= 12000 + 105 + 0{,}3375 + 675 \\[6pt]
+    &= \boxed{12780{,}3375}
+\end{align*}
+
+Die Herstellung von 15 Einheiten kostet \textbf{12.780,34} (Geldeinheiten).
+
+% ============================================================
+\section*{Teil 2: Kosten für eine zusätzliche Einheit (Grenzkosten)}
+
+\textbf{Frage:} Wie viel kostet es, von $Q$ auf $Q + 1$ Einheiten zu gehen?
+
+Das sind die \textbf{Mehrkosten}: $C(Q + 1) - C(Q)$.
+
+\bigskip
+
+\textbf{Schritt für Schritt:}
+
+\begin{align*}
+    C(Q+1) &= 12000 + 7(Q+1) + 0{,}0015(Q+1)^2 + 0{,}2(Q+1)^3
+\end{align*}
+
+Wir berechnen die Differenz $C(Q+1) - C(Q)$ für jeden Term einzeln:
+
+\bigskip
+
+\textbf{Konstante:} $12000 - 12000 = 0$
+
+\textbf{Linearer Term:}
+\[
+    7(Q+1) - 7Q = 7
+\]
+
+\textbf{Quadratischer Term:}
+\begin{align*}
+    0{,}0015(Q+1)^2 - 0{,}0015\,Q^2 &= 0{,}0015\left[(Q+1)^2 - Q^2\right] \\
+    &= 0{,}0015\left[Q^2 + 2Q + 1 - Q^2\right] \\
+    &= 0{,}0015(2Q + 1)
+\end{align*}
+
+\textbf{Kubischer Term:}
+\begin{align*}
+    0{,}2(Q+1)^3 - 0{,}2\,Q^3 &= 0{,}2\left[(Q+1)^3 - Q^3\right]
+\end{align*}
+
+Nebenrechnung: $(Q+1)^3 = Q^3 + 3Q^2 + 3Q + 1$
+
+\[
+    (Q+1)^3 - Q^3 = 3Q^2 + 3Q + 1
+\]
+
+Also: $0{,}2(3Q^2 + 3Q + 1)$
+
+\bigskip
+
+\textbf{Alles zusammen:}
+
+\begin{align*}
+    C(Q+1) - C(Q) &= 7 + 0{,}0015(2Q + 1) + 0{,}2(3Q^2 + 3Q + 1)
+\end{align*}
+
+Ausmultiplizieren:
+
+\begin{align*}
+    &= 7 + 0{,}003Q + 0{,}0015 + 0{,}6Q^2 + 0{,}6Q + 0{,}2 \\[6pt]
+    &= 0{,}6Q^2 + 0{,}603Q + 7{,}2015
+\end{align*}
+
+\[
+    \boxed{C(Q+1) - C(Q) = 0{,}6Q^2 + 0{,}603Q + 7{,}2015}
+\]
+
+\bigskip
+
+\textbf{Beispiel:} Zusätzliche Kosten von Einheit 15 auf 16:
+\begin{align*}
+    C(16) - C(15) &= 0{,}6 \cdot 225 + 0{,}603 \cdot 15 + 7{,}2015 \\
+    &= 135 + 9{,}045 + 7{,}2015 = \boxed{151{,}2465}
+\end{align*}
+
+\textit{Die 16. Einheit kostet also ca. 151,25 mehr als die 15. Es wird immer teurer, weil der kubische Term dominiert.}
+
+\end{document}

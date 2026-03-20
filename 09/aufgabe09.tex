@@ -1,0 +1,147 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{parskip}
+
+\title{\textbf{Aufgabe 9 -- Lösung} \\ Methoden I: Mathematik, 2026S}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Wie funktionieren Doppelsummen?}
+
+Bei $\displaystyle\sum_{j=a}^{b} \sum_{i=c}^{d} f(i,j)$ rechnet man \textbf{von innen nach außen}:
+
+\begin{enumerate}
+    \item Für jeden festen Wert von $j$: berechne die innere Summe (über $i$).
+    \item Addiere alle Ergebnisse der äußeren Summe (über $j$).
+\end{enumerate}
+
+% ============================================================
+\section*{(a) $\displaystyle\sum_{j=2}^{4} \sum_{i=1}^{2} (2i^2 - j + 3)$}
+
+\textbf{Innere Summe} (für festes $j$, über $i = 1, 2$):
+
+\begin{align*}
+    \sum_{i=1}^{2} (2i^2 - j + 3) &= (2 \cdot 1 - j + 3) + (2 \cdot 4 - j + 3) \\
+    &= (5 - j) + (11 - j) = 16 - 2j
+\end{align*}
+
+\textbf{Äußere Summe} (über $j = 2, 3, 4$):
+
+\begin{align*}
+    \sum_{j=2}^{4} (16 - 2j) &= (16 - 4) + (16 - 6) + (16 - 8) \\
+    &= 12 + 10 + 8 = \boxed{30}
+\end{align*}
+
+% ============================================================
+\section*{(b) $\displaystyle\sum_{j=3}^{5} \sum_{i=2}^{j-1} \left(-\frac{i}{j} + 4i^2\right)$}
+
+\textbf{Achtung:} Die obere Grenze der inneren Summe hängt von $j$ ab!
+
+\bigskip
+\textbf{$j = 3$:} $i$ geht von 2 bis $3 - 1 = 2$ (nur $i = 2$):
+\[
+    -\frac{2}{3} + 4 \cdot 4 = -\frac{2}{3} + 16 = \frac{46}{3}
+\]
+
+\textbf{$j = 4$:} $i$ geht von 2 bis 3:
+\begin{align*}
+    i=2:& \quad -\frac{2}{4} + 16 = -\frac{1}{2} + 16 = \frac{31}{2} \\
+    i=3:& \quad -\frac{3}{4} + 36 = \frac{141}{4} \\
+    \text{Summe:}& \quad \frac{31}{2} + \frac{141}{4} = \frac{62}{4} + \frac{141}{4} = \frac{203}{4}
+\end{align*}
+
+\textbf{$j = 5$:} $i$ geht von 2 bis 4:
+\begin{align*}
+    i=2:& \quad -\frac{2}{5} + 16 = \frac{78}{5} \\
+    i=3:& \quad -\frac{3}{5} + 36 = \frac{177}{5} \\
+    i=4:& \quad -\frac{4}{5} + 64 = \frac{316}{5} \\
+    \text{Summe:}& \quad \frac{78 + 177 + 316}{5} = \frac{571}{5}
+\end{align*}
+
+\textbf{Gesamtsumme:}
+\[
+    \frac{46}{3} + \frac{203}{4} + \frac{571}{5} = \frac{920 + 3045 + 6852}{60} = \frac{10817}{60} = \boxed{\frac{10817}{60} \approx 180{,}28}
+\]
+
+% ============================================================
+\section*{(c) $\displaystyle\sum_{j=2}^{3} \sum_{i=1}^{j} \left(\frac{j}{i} + 2i\right)$}
+
+\textbf{$j = 2$:} $i = 1, 2$:
+\begin{align*}
+    i=1:& \quad \frac{2}{1} + 2 = 4 \\
+    i=2:& \quad \frac{2}{2} + 4 = 5 \\
+    \text{Summe:}& \quad 9
+\end{align*}
+
+\textbf{$j = 3$:} $i = 1, 2, 3$:
+\begin{align*}
+    i=1:& \quad \frac{3}{1} + 2 = 5 \\
+    i=2:& \quad \frac{3}{2} + 4 = 5{,}5 \\
+    i=3:& \quad \frac{3}{3} + 6 = 7 \\
+    \text{Summe:}& \quad 17{,}5
+\end{align*}
+
+\[
+    \boxed{9 + 17{,}5 = 26{,}5 = \frac{53}{2}}
+\]
+
+% ============================================================
+\section*{(d) $\displaystyle\sum_{j=1}^{3} \sum_{i=1}^{j} \binom{i}{j!}$}
+
+\textbf{Hinweis:} Wir interpretieren dies als $\displaystyle\sum_{j=1}^{3} \sum_{i=1}^{j} \frac{i}{j!}$
+
+\textbf{$j = 1$:} $j! = 1$, $i = 1$:
+\[
+    \frac{1}{1} = 1
+\]
+
+\textbf{$j = 2$:} $j! = 2$, $i = 1, 2$:
+\[
+    \frac{1}{2} + \frac{2}{2} = \frac{1}{2} + 1 = \frac{3}{2}
+\]
+
+\textbf{$j = 3$:} $j! = 6$, $i = 1, 2, 3$:
+\[
+    \frac{1}{6} + \frac{2}{6} + \frac{3}{6} = \frac{6}{6} = 1
+\]
+
+\[
+    \boxed{1 + \frac{3}{2} + 1 = \frac{7}{2} = 3{,}5}
+\]
+
+% ============================================================
+\section*{(e) $\displaystyle\sum_{j=0}^{3} \sum_{i=0}^{j} \frac{j^2}{(i+1)!}$}
+
+\textbf{$j = 0$:} $j^2 = 0$, $i = 0$:
+\[
+    \frac{0}{1!} = 0
+\]
+
+\textbf{$j = 1$:} $j^2 = 1$, $i = 0, 1$:
+\[
+    \frac{1}{1!} + \frac{1}{2!} = 1 + \frac{1}{2} = \frac{3}{2}
+\]
+
+\textbf{$j = 2$:} $j^2 = 4$, $i = 0, 1, 2$:
+\[
+    \frac{4}{1!} + \frac{4}{2!} + \frac{4}{3!} = 4 + 2 + \frac{2}{3} = \frac{20}{3}
+\]
+
+\textbf{$j = 3$:} $j^2 = 9$, $i = 0, 1, 2, 3$:
+\[
+    \frac{9}{1!} + \frac{9}{2!} + \frac{9}{3!} + \frac{9}{4!} = 9 + 4{,}5 + 1{,}5 + 0{,}375 = \frac{123}{8}
+\]
+
+\textbf{Gesamtsumme:}
+\[
+    0 + \frac{3}{2} + \frac{20}{3} + \frac{123}{8} = \frac{36 + 160 + 369}{24} = \frac{565}{24} = \boxed{\frac{565}{24} \approx 23{,}54}
+\]
+
+\end{document}

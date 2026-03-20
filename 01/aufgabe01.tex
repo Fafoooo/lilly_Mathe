@@ -1,0 +1,159 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{parskip}
+\usepackage{enumitem}
+
+\title{\textbf{Aufgabe 1 -- Lösung} \\ Methoden I: Mathematik, 2026S}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Teil (a): Mengen in aufzählender Schreibweise}
+
+\textbf{Was bedeutet das?} Die Menge ist mit einer Bedingung beschrieben. Wir sollen alle Elemente einzeln hinschreiben.
+
+\bigskip
+
+\textbf{Menge A:} $A = \{x \in \mathbb{N} \mid 3 \leq x < 11\}$
+
+\textit{Lies:} "`Alle natürlichen Zahlen x, für die gilt: x ist mindestens 3 und kleiner als 11."'
+
+$\mathbb{N} = \{0, 1, 2, 3, 4, \ldots\}$ (natürliche Zahlen, mit 0)
+
+Welche natürlichen Zahlen liegen zwischen 3 (inklusive) und 11 (exklusive)?
+
+\[
+    \boxed{A = \{3, 4, 5, 6, 7, 8, 9, 10\}}
+\]
+
+\bigskip
+
+\textbf{Menge B:} $B = \{y \in \mathbb{Z} \mid -4 < y \leq 5\}$
+
+\textit{Lies:} "`Alle ganzen Zahlen y, die größer als $-4$ und höchstens 5 sind."'
+
+$\mathbb{Z} = \{\ldots, -2, -1, 0, 1, 2, \ldots\}$ (ganze Zahlen, auch negative)
+
+Achtung: $-4$ ist \textbf{nicht} dabei (striktes $<$), aber $5$ schon ($\leq$).
+
+\[
+    \boxed{B = \{-3, -2, -1, 0, 1, 2, 3, 4, 5\}}
+\]
+
+\bigskip
+
+\textbf{Menge C:} $C = \{z \in \mathbb{N} \mid z \text{ ist ein Vielfaches von 3 und } z \leq 17\}$
+
+Vielfache von 3: $0, 3, 6, 9, 12, 15, 18, \ldots$
+
+Davon alle $\leq 17$:
+
+\[
+    \boxed{C = \{0, 3, 6, 9, 12, 15\}}
+\]
+
+\bigskip
+
+\textbf{Menge D:} $D = \{u \in \mathbb{N} \mid u \text{ ist Primzahl}\} \setminus \{u \in \mathbb{N} \mid 3 \leq u < 19\}$
+
+\textit{Lies:} "`Alle Primzahlen, MINUS die Zahlen von 3 bis 18."'
+
+Das $\setminus$ bedeutet \textbf{Mengendifferenz}: "`alles was in der ersten Menge ist, aber NICHT in der zweiten."'
+
+Primzahlen: $\{2, 3, 5, 7, 11, 13, 17, 19, 23, 29, \ldots\}$
+
+Davon entfernen wir alle mit $3 \leq u < 19$, also $\{3, 5, 7, 11, 13, 17\}$.
+
+Übrig bleiben: $2$ (kleiner als 3) und alle Primzahlen $\geq 19$.
+
+\[
+    \boxed{D = \{2, 19, 23, 29, 31, 37, 41, 43, 47, \ldots\}}
+\]
+
+\bigskip
+
+\textbf{Menge E:} $E = \{v \in \mathbb{Z} \mid -10 \leq v^2 < 20\}$
+
+\textit{Lies:} "`Alle ganzen Zahlen v, deren Quadrat zwischen $-10$ und $20$ liegt."'
+
+Da $v^2 \geq 0$ immer gilt, ist die Bedingung $-10 \leq v^2$ automatisch erfüllt.
+
+Es bleibt: $v^2 < 20$. Welche ganzen Zahlen haben ein Quadrat $< 20$?
+\begin{itemize}
+    \item $0^2 = 0$ \checkmark
+    \item $(\pm 1)^2 = 1$ \checkmark
+    \item $(\pm 2)^2 = 4$ \checkmark
+    \item $(\pm 3)^2 = 9$ \checkmark
+    \item $(\pm 4)^2 = 16$ \checkmark
+    \item $(\pm 5)^2 = 25$ $\times$ zu groß!
+\end{itemize}
+
+\[
+    \boxed{E = \{-4, -3, -2, -1, 0, 1, 2, 3, 4\}}
+\]
+
+% ============================================================
+\section*{Teil (b): Mengenoperationen}
+
+Zur Erinnerung:
+\begin{itemize}
+    \item $\cup$ = \textbf{Vereinigung} ("`oder"' -- alles was in mindestens einer Menge ist)
+    \item $\cap$ = \textbf{Schnitt} ("`und"' -- nur was in BEIDEN Mengen ist)
+    \item $A^c$ = \textbf{Komplement} (alles was NICHT in A ist)
+\end{itemize}
+
+\bigskip
+
+\textbf{$C \cup D$:}
+
+$C = \{0, 3, 6, 9, 12, 15\}$ und $D = \{2, 19, 23, 29, 31, \ldots\}$
+
+\[
+    \boxed{C \cup D = \{0, 2, 3, 6, 9, 12, 15, 19, 23, 29, 31, \ldots\}}
+\]
+
+\bigskip
+
+\textbf{$A \cap D$:}
+
+$A = \{3, 4, 5, 6, 7, 8, 9, 10\}$ und $D = \{2, 19, 23, 29, \ldots\}$
+
+$A$ enthält Zahlen von 3 bis 10. Aus $D$ wurden genau die Primzahlen von 3 bis 18 entfernt. Also ist der Schnitt \textbf{leer} -- keine Zahl ist gleichzeitig in A (3-10) und in D (2 oder $\geq 19$). Warte -- die 2 ist nicht in A (A startet bei 3).
+
+\[
+    \boxed{A \cap D = \emptyset}
+\]
+
+\bigskip
+
+\textbf{$B \cap E$:}
+
+$B = \{-3, -2, -1, 0, 1, 2, 3, 4, 5\}$ und $E = \{-4, -3, -2, -1, 0, 1, 2, 3, 4\}$
+
+Gemeinsame Elemente:
+
+\[
+    \boxed{B \cap E = \{-3, -2, -1, 0, 1, 2, 3, 4\}}
+\]
+
+\bigskip
+
+\textbf{$A^c$:}
+
+$A = \{3, 4, 5, 6, 7, 8, 9, 10\}$
+
+Das Komplement $A^c$ enthält alle natürlichen Zahlen, die NICHT in A sind:
+
+\[
+    \boxed{A^c = \{0, 1, 2, 11, 12, 13, 14, \ldots\} = \{n \in \mathbb{N} \mid n < 3 \text{ oder } n \geq 11\}}
+\]
+
+\textit{Anmerkung: Das Komplement bezieht sich auf die Grundmenge $\mathbb{N}$.}
+
+\end{document}

@@ -1,0 +1,84 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{parskip}
+
+\title{\textbf{Aufgabe 8 -- Lösung} \\ Methoden I: Mathematik, 2026S}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Angabe}
+Bestimmen Sie die Koeffizienten von $x$, $x^2$, $x^4$ und $x^6$ in $(3 + x)^7$ \textbf{ohne} das Pascalsche Dreieck.
+
+\section*{Methode: Binomialkoeffizient direkt berechnen}
+
+Der Binomische Lehrsatz sagt:
+\[
+    (3 + x)^7 = \sum_{k=0}^{7} \binom{7}{k} \cdot 3^{7-k} \cdot x^k
+\]
+
+Der Koeffizient von $x^k$ ist also: $\binom{7}{k} \cdot 3^{7-k}$
+
+\textbf{Binomialkoeffizient berechnet man mit:}
+\[
+    \binom{n}{k} = \frac{n!}{k! \cdot (n-k)!}
+\]
+
+% ============================================================
+\section*{Koeffizient von $x$ ($k = 1$)}
+
+\[
+    \binom{7}{1} \cdot 3^{6} = 7 \cdot 729 = \boxed{5103}
+\]
+
+\textit{Erklärung: $\binom{7}{1} = \frac{7!}{1! \cdot 6!} = 7$. Und $3^6 = 729$.}
+
+% ============================================================
+\section*{Koeffizient von $x^2$ ($k = 2$)}
+
+\[
+    \binom{7}{2} \cdot 3^{5} = 21 \cdot 243 = \boxed{5103}
+\]
+
+\textit{Erklärung: $\binom{7}{2} = \frac{7!}{2! \cdot 5!} = \frac{7 \cdot 6}{2 \cdot 1} = 21$. Und $3^5 = 243$.}
+
+% ============================================================
+\section*{Koeffizient von $x^4$ ($k = 4$)}
+
+\[
+    \binom{7}{4} \cdot 3^{3} = 35 \cdot 27 = \boxed{945}
+\]
+
+\textit{Erklärung: $\binom{7}{4} = \frac{7!}{4! \cdot 3!} = \frac{7 \cdot 6 \cdot 5}{3 \cdot 2 \cdot 1} = 35$. Und $3^3 = 27$.}
+
+% ============================================================
+\section*{Koeffizient von $x^6$ ($k = 6$)}
+
+\[
+    \binom{7}{6} \cdot 3^{1} = 7 \cdot 3 = \boxed{21}
+\]
+
+\textit{Erklärung: $\binom{7}{6} = \binom{7}{1} = 7$ (Symmetrie!). Und $3^1 = 3$.}
+
+\section*{Zusammenfassung}
+
+\begin{center}
+\begin{tabular}{c|c|c|c}
+    Term & $\binom{7}{k}$ & $3^{7-k}$ & Koeffizient \\
+    \hline
+    $x$ & 7 & 729 & 5103 \\
+    $x^2$ & 21 & 243 & 5103 \\
+    $x^4$ & 35 & 27 & 945 \\
+    $x^6$ & 7 & 3 & 21
+\end{tabular}
+\end{center}
+
+\textbf{Interessant:} Die Koeffizienten von $x$ und $x^2$ sind zufällig gleich (beide 5103)!
+
+\end{document}

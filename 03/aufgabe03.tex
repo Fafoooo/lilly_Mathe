@@ -1,0 +1,131 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{parskip}
+
+\title{\textbf{Aufgabe 3 -- Lösung} \\ Methoden I: Mathematik, 2026S}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Grundbegriffe}
+
+\begin{itemize}
+    \item \textbf{Hinreichende Bedingung:} $P \Rightarrow Q$ -- "`Wenn P, dann Q."' \\
+    P reicht aus, damit Q gilt. (Aber Q kann auch ohne P gelten.)
+
+    \item \textbf{Notwendige Bedingung:} $Q \Rightarrow P$ -- "`Wenn Q, dann muss P gelten."' \\
+    Ohne P kann Q nicht gelten. (Aber P allein reicht nicht unbedingt.)
+
+    \item \textbf{Notwendig und hinreichend:} $P \Leftrightarrow Q$ -- "`P genau dann, wenn Q."' \\
+    Beide bedingen einander.
+\end{itemize}
+
+\textbf{Eselsbrücke:}
+\begin{itemize}
+    \item Hinreichend = "`es reicht"' ($P \Rightarrow Q$)
+    \item Notwendig = "`es muss sein"' ($Q \Rightarrow P$)
+\end{itemize}
+
+% ============================================================
+\section*{(a) "`$x = 2$ ist notwendig für $x > 1$"'}
+
+\textbf{Behauptung:} $x > 1 \Rightarrow x = 2$
+
+\textbf{Prüfung:} Wenn $x > 1$, muss dann $x = 2$ sein? \textbf{Nein!} Z.B. $x = 5 > 1$, aber $x \neq 2$.
+
+\[
+    \boxed{\textbf{FALSCH.}}
+\]
+
+\textbf{Korrektur:} $x = 2$ ist eine \textbf{hinreichende} Bedingung für $x > 1$.
+
+Denn: Wenn $x = 2$, dann ist $x > 1$. \checkmark
+
+% ============================================================
+\section*{(b) "`$x > 11$ ist hinreichend für $x \geq 7$"'}
+
+\textbf{Behauptung:} $x > 11 \Rightarrow x \geq 7$
+
+\textbf{Prüfung:} Wenn $x > 11$ (z.B. $x = 12$), ist dann $x \geq 7$? \textbf{Ja!} Denn $12 \geq 7$. Allgemein: wenn $x > 11$, dann erst recht $x \geq 7$.
+
+\[
+    \boxed{\textbf{WAHR.}}
+\]
+
+% ============================================================
+\section*{(c) "`$x^2 = 9$ ist notwendig und hinreichend für $x \in \{-3, 3\}$"'}
+
+\textbf{Behauptung:} $x^2 = 9 \Leftrightarrow x \in \{-3, 3\}$
+
+\textbf{Prüfung:}
+\begin{itemize}
+    \item $\Rightarrow$: Wenn $x^2 = 9$, dann $x = 3$ oder $x = -3$. \checkmark
+    \item $\Leftarrow$: Wenn $x = 3$, dann $x^2 = 9$. Wenn $x = -3$, dann $x^2 = 9$. \checkmark
+\end{itemize}
+
+Beide Richtungen stimmen.
+
+\[
+    \boxed{\textbf{WAHR.}}
+\]
+
+% ============================================================
+\section*{(d) "`$x = 0$ ist notwendig und hinreichend für $x^2 = x$"'}
+
+\textbf{Behauptung:} $x = 0 \Leftrightarrow x^2 = x$
+
+\textbf{Prüfung:}
+\begin{itemize}
+    \item $\Rightarrow$: Wenn $x = 0$: $0^2 = 0$ \checkmark
+    \item $\Leftarrow$: Wenn $x^2 = x$, muss dann $x = 0$ sein?
+
+    $x^2 = x \Leftrightarrow x^2 - x = 0 \Leftrightarrow x(x - 1) = 0 \Leftrightarrow x = 0$ oder $x = 1$.
+
+    Also: $x = 1$ erfüllt auch $x^2 = x$ (denn $1^2 = 1$), aber $x \neq 0$!
+\end{itemize}
+
+\[
+    \boxed{\textbf{FALSCH.}}
+\]
+
+\textbf{Korrektur:} $x = 0$ ist \textbf{hinreichend}, aber nicht notwendig für $x^2 = x$.
+
+Notwendig und hinreichend wäre: $x \in \{0, 1\} \Leftrightarrow x^2 = x$.
+
+% ============================================================
+\section*{(e) "`$x = 4$ und $y = 1$ ist hinreichend für $x - y = 3$"'}
+
+\textbf{Behauptung:} $(x = 4 \land y = 1) \Rightarrow x - y = 3$
+
+\textbf{Prüfung:} $4 - 1 = 3$ \checkmark
+
+\[
+    \boxed{\textbf{WAHR.}}
+\]
+
+% ============================================================
+\section*{(f) "`$x = y$ ist notwendig für $x^2 = y^2$"'}
+
+\textbf{Behauptung:} $x^2 = y^2 \Rightarrow x = y$
+
+\textbf{Prüfung:} Wenn $x^2 = y^2$, muss dann $x = y$ gelten?
+
+$x^2 = y^2 \Leftrightarrow x^2 - y^2 = 0 \Leftrightarrow (x - y)(x + y) = 0 \Leftrightarrow x = y$ oder $x = -y$.
+
+\textbf{Gegenbeispiel:} $x = 3$, $y = -3$: $x^2 = 9 = y^2$, aber $x \neq y$.
+
+\[
+    \boxed{\textbf{FALSCH.}}
+\]
+
+\textbf{Korrektur:} $x = y$ ist \textbf{hinreichend} für $x^2 = y^2$ (aber nicht notwendig).
+
+Notwendig und hinreichend wäre: $x = y$ oder $x = -y$ (also $|x| = |y|$).
+
+\end{document}

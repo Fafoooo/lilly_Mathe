@@ -1,0 +1,100 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{parskip}
+
+\title{\textbf{Aufgabe 6 -- Lösung} \\ Methoden I: Mathematik, 2026S}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Benötigte Formeln}
+
+\begin{align}
+    \sum_{k=1}^{n} 1 &= n \\[6pt]
+    \sum_{k=1}^{n} k &= \frac{n(n+1)}{2} \\[6pt]
+    \sum_{k=1}^{n} k^2 &= \frac{n(n+1)(2n+1)}{6} \\[6pt]
+    \sum_{k=1}^{n} k^3 &= \left(\frac{n(n+1)}{2}\right)^2
+\end{align}
+
+\textbf{Wichtige Rechenregel:} Konstante Faktoren und Summen kann man aufteilen:
+\[
+    \sum_{k=1}^{n} (a \cdot f(k) + b \cdot g(k)) = a \cdot \sum_{k=1}^{n} f(k) + b \cdot \sum_{k=1}^{n} g(k)
+\]
+
+% ============================================================
+\section*{(a) $\displaystyle\sum_{k=1}^{42} \left(k^2 - \frac{k}{2} - 13\right)$}
+
+Aufteilen in drei separate Summen:
+
+\[
+    \sum_{k=1}^{42} k^2 - \frac{1}{2} \sum_{k=1}^{42} k - 13 \sum_{k=1}^{42} 1
+\]
+
+Jetzt einzeln berechnen mit den Formeln (jeweils $n = 42$):
+
+\bigskip
+
+\textbf{Summe 1:} $\displaystyle\sum_{k=1}^{42} k^2 = \frac{42 \cdot 43 \cdot 85}{6} = \frac{153510}{6} = 25585$
+
+\textit{Erklärung: $2n + 1 = 2 \cdot 42 + 1 = 85$, dann $42 \cdot 43 = 1806$, dann $1806 \cdot 85 = 153510$, geteilt durch $6$.}
+
+\bigskip
+
+\textbf{Summe 2:} $\displaystyle\frac{1}{2} \sum_{k=1}^{42} k = \frac{1}{2} \cdot \frac{42 \cdot 43}{2} = \frac{1}{2} \cdot 903 = 451{,}5$
+
+\bigskip
+
+\textbf{Summe 3:} $\displaystyle 13 \sum_{k=1}^{42} 1 = 13 \cdot 42 = 546$
+
+\bigskip
+
+\textbf{Ergebnis:}
+\[
+    25585 - 451{,}5 - 546 = 24587{,}5
+\]
+
+\[
+    \boxed{\sum_{k=1}^{42} \left(k^2 - \frac{k}{2} - 13\right) = 24587{,}5 = \frac{49175}{2}}
+\]
+
+% ============================================================
+\section*{(b) $\displaystyle\sum_{k=1}^{21} \left(2k^3 - 2k + 17\right)$}
+
+Aufteilen:
+
+\[
+    2 \sum_{k=1}^{21} k^3 - 2 \sum_{k=1}^{21} k + 17 \sum_{k=1}^{21} 1
+\]
+
+\bigskip
+
+\textbf{Summe 1:} $\displaystyle 2 \sum_{k=1}^{21} k^3 = 2 \cdot \left(\frac{21 \cdot 22}{2}\right)^2 = 2 \cdot 231^2 = 2 \cdot 53361 = 106722$
+
+\textit{Erklärung: $\frac{21 \cdot 22}{2} = 231$, dann $231^2 = 53361$.}
+
+\bigskip
+
+\textbf{Summe 2:} $\displaystyle 2 \sum_{k=1}^{21} k = 2 \cdot \frac{21 \cdot 22}{2} = 2 \cdot 231 = 462$
+
+\bigskip
+
+\textbf{Summe 3:} $\displaystyle 17 \sum_{k=1}^{21} 1 = 17 \cdot 21 = 357$
+
+\bigskip
+
+\textbf{Ergebnis:}
+\[
+    106722 - 462 + 357 = 106617
+\]
+
+\[
+    \boxed{\sum_{k=1}^{21} \left(2k^3 - 2k + 17\right) = 106617}
+\]
+
+\end{document}

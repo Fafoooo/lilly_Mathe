@@ -1,0 +1,87 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{parskip}
+
+\title{\textbf{Aufgabe 4 -- Lösung} \\ Methoden I: Mathematik, 2026S}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Grundidee}
+
+Man sucht ein \textbf{Muster} in den Summanden und drückt es mit einer Laufvariable aus.
+
+% ============================================================
+\section*{(a) $5 + 9 + 13 + 17 + 21 + 25 + 29$}
+
+\textbf{Muster erkennen:} Differenz zwischen aufeinanderfolgenden Zahlen ist immer $4$.
+
+\begin{tabular}{c|ccccccc}
+    Position $k$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
+    \hline
+    Summand & 5 & 9 & 13 & 17 & 21 & 25 & 29
+\end{tabular}
+
+Formel: Startwert $5$ plus $k$ mal Schrittweite $4$: $\quad 5 + 4k$
+
+\textbf{Probe:} $k = 0$: $5 + 0 = 5$ \checkmark \quad $k = 6$: $5 + 24 = 29$ \checkmark
+
+\[
+    \boxed{\sum_{k=0}^{6} (5 + 4k) = \sum_{k=0}^{6} (4k + 5)}
+\]
+
+% ============================================================
+\section*{(b) $2 \cdot 3 + 3 \cdot 4 + 4 \cdot 5 + \ldots + 15 \cdot 16$}
+
+\textbf{Muster:} Jeder Summand ist ein Produkt zweier aufeinanderfolgender Zahlen: $k \cdot (k+1)$.
+
+Erster Summand: $2 \cdot 3$ ($k = 2$), letzter: $15 \cdot 16$ ($k = 15$).
+
+\[
+    \boxed{\sum_{k=2}^{15} k(k+1)}
+\]
+
+% ============================================================
+\section*{(c) $1 + 4 + 16 + 64 + 256 + 1024 + 4096$}
+
+\textbf{Muster:} Jede Zahl ist das $4$-fache der vorherigen $\Rightarrow$ Potenzen von 4.
+
+\begin{tabular}{c|ccccccc}
+    $k$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
+    \hline
+    $4^k$ & 1 & 4 & 16 & 64 & 256 & 1024 & 4096
+\end{tabular}
+
+\[
+    \boxed{\sum_{k=0}^{6} 4^k}
+\]
+
+% ============================================================
+\section*{(d) $\dfrac{14}{1} + \dfrac{12}{3} + \dfrac{10}{5} + \dfrac{8}{7} + \dfrac{6}{9} + \dfrac{4}{11} + \dfrac{2}{13}$}
+
+\textbf{Muster im Zähler:} $14, 12, 10, 8, 6, 4, 2$ -- startet bei 14, sinkt um 2.
+
+\textbf{Muster im Nenner:} $1, 3, 5, 7, 9, 11, 13$ -- startet bei 1, steigt um 2.
+
+\begin{tabular}{c|ccccccc}
+    $k$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
+    \hline
+    Zähler & 14 & 12 & 10 & 8 & 6 & 4 & 2 \\
+    Nenner & 1 & 3 & 5 & 7 & 9 & 11 & 13
+\end{tabular}
+
+Zähler: $14 - 2k$. \quad Nenner: $1 + 2k = 2k + 1$.
+
+\[
+    \boxed{\sum_{k=0}^{6} \frac{14 - 2k}{2k + 1}}
+\]
+
+\textbf{Probe:} $k = 0$: $\frac{14}{1}$ \checkmark \quad $k = 6$: $\frac{14-12}{13} = \frac{2}{13}$ \checkmark
+
+\end{document}

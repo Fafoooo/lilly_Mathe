@@ -1,0 +1,71 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{parskip}
+
+\title{\textbf{Aufgabe 7 -- Lösung} \\ Methoden I: Mathematik, 2026S}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Angabe}
+Multiplizieren Sie $(3x - 2)^6$ aus. Bestimmen Sie die Binomialkoeffizienten mit dem Pascalschen Dreieck.
+
+\section*{Der Binomische Lehrsatz}
+
+\[
+    (a + b)^n = \sum_{k=0}^{n} \binom{n}{k} a^{n-k} \cdot b^k
+\]
+
+Hier: $a = 3x$, $b = -2$, $n = 6$.
+
+\section*{Schritt 1: Pascalsches Dreieck (bis Zeile 6)}
+
+\begin{center}
+\begin{tabular}{rccccccccccccc}
+    $n=0$: & & & & & & & 1 \\
+    $n=1$: & & & & & & 1 & & 1 \\
+    $n=2$: & & & & & 1 & & 2 & & 1 \\
+    $n=3$: & & & & 1 & & 3 & & 3 & & 1 \\
+    $n=4$: & & & 1 & & 4 & & 6 & & 4 & & 1 \\
+    $n=5$: & & 1 & & 5 & & 10 & & 10 & & 5 & & 1 \\
+    $n=6$: & 1 & & 6 & & 15 & & 20 & & 15 & & 6 & & 1
+\end{tabular}
+\end{center}
+
+\textbf{Wie funktioniert das?} Jede Zahl ist die Summe der zwei Zahlen direkt darüber. Z.B. $15 = 5 + 10$.
+
+Also: $\binom{6}{0} = 1$, $\binom{6}{1} = 6$, $\binom{6}{2} = 15$, $\binom{6}{3} = 20$, $\binom{6}{4} = 15$, $\binom{6}{5} = 6$, $\binom{6}{6} = 1$.
+
+\section*{Schritt 2: Alle Terme berechnen}
+
+\begin{align*}
+    (3x - 2)^6 &= \sum_{k=0}^{6} \binom{6}{k} (3x)^{6-k} \cdot (-2)^k
+\end{align*}
+
+\begin{tabular}{c|c|c|c|c}
+    $k$ & $\binom{6}{k}$ & $(3x)^{6-k}$ & $(-2)^k$ & Produkt \\
+    \hline
+    0 & 1 & $(3x)^6 = 729x^6$ & $1$ & $729x^6$ \\
+    1 & 6 & $(3x)^5 = 243x^5$ & $-2$ & $6 \cdot 243 \cdot (-2) \cdot x^5 = -2916x^5$ \\
+    2 & 15 & $(3x)^4 = 81x^4$ & $4$ & $15 \cdot 81 \cdot 4 \cdot x^4 = 4860x^4$ \\
+    3 & 20 & $(3x)^3 = 27x^3$ & $-8$ & $20 \cdot 27 \cdot (-8) \cdot x^3 = -4320x^3$ \\
+    4 & 15 & $(3x)^2 = 9x^2$ & $16$ & $15 \cdot 9 \cdot 16 \cdot x^2 = 2160x^2$ \\
+    5 & 6 & $(3x)^1 = 3x$ & $-32$ & $6 \cdot 3 \cdot (-32) \cdot x = -576x$ \\
+    6 & 1 & $(3x)^0 = 1$ & $64$ & $64$
+\end{tabular}
+
+\textbf{Hinweis:} $(-2)^k$ wechselt das Vorzeichen: positiv wenn $k$ gerade, negativ wenn $k$ ungerade.
+
+\section*{Ergebnis}
+
+\[
+    \boxed{(3x-2)^6 = 729x^6 - 2916x^5 + 4860x^4 - 4320x^3 + 2160x^2 - 576x + 64}
+\]
+
+\end{document}

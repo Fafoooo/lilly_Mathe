@@ -1,0 +1,63 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{parskip}
+
+\title{\textbf{Aufgabe 5 -- Lösung} \\ Methoden I: Mathematik, 2026S}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Grundidee}
+Jeden Summanden einzeln hinschreiben (Laufvariable einsetzen), dann zusammenrechnen.
+
+% ============================================================
+\section*{(a) $\displaystyle\sum_{i=0}^{5} \left(i^2 - \frac{i}{2} + 1\right)$}
+
+Wir setzen $i = 0, 1, 2, 3, 4, 5$ ein:
+
+\begin{align*}
+    i = 0: &\quad 0^2 - \frac{0}{2} + 1 = 0 - 0 + 1 = 1 \\
+    i = 1: &\quad 1^2 - \frac{1}{2} + 1 = 1 - 0{,}5 + 1 = 1{,}5 \\
+    i = 2: &\quad 2^2 - \frac{2}{2} + 1 = 4 - 1 + 1 = 4 \\
+    i = 3: &\quad 3^2 - \frac{3}{2} + 1 = 9 - 1{,}5 + 1 = 8{,}5 \\
+    i = 4: &\quad 4^2 - \frac{4}{2} + 1 = 16 - 2 + 1 = 15 \\
+    i = 5: &\quad 5^2 - \frac{5}{2} + 1 = 25 - 2{,}5 + 1 = 23{,}5
+\end{align*}
+
+\textbf{Summe:}
+\[
+    1 + 1{,}5 + 4 + 8{,}5 + 15 + 23{,}5 = 53{,}5
+\]
+
+\[
+    \boxed{\sum_{i=0}^{5} \left(i^2 - \frac{i}{2} + 1\right) = 53{,}5 = \frac{107}{2}}
+\]
+
+% ============================================================
+\section*{(b) $\displaystyle\sum_{j=1}^{4} \left((j+1)^2 - 2j + 5\right)$}
+
+Wir setzen $j = 1, 2, 3, 4$ ein:
+
+\begin{align*}
+    j = 1: &\quad (1+1)^2 - 2(1) + 5 = 4 - 2 + 5 = 7 \\
+    j = 2: &\quad (2+1)^2 - 2(2) + 5 = 9 - 4 + 5 = 10 \\
+    j = 3: &\quad (3+1)^2 - 2(3) + 5 = 16 - 6 + 5 = 15 \\
+    j = 4: &\quad (4+1)^2 - 2(4) + 5 = 25 - 8 + 5 = 22
+\end{align*}
+
+\textbf{Summe:}
+\[
+    7 + 10 + 15 + 22 = 54
+\]
+
+\[
+    \boxed{\sum_{j=1}^{4} \left((j+1)^2 - 2j + 5\right) = 54}
+\]
+
+\end{document}

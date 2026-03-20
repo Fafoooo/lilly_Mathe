@@ -1,0 +1,119 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{tikz}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{parskip}
+
+\title{\textbf{Aufgabe 2 -- Lösung} \\ Methoden I: Mathematik, 2026S}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Angabe}
+Seien $A$, $B$ und $C$ beliebige Mengen. Zeichnen Sie die folgenden Mengen in Venn-Diagramme ein. Was fällt Ihnen dabei auf?
+
+\begin{itemize}
+    \item $A \cap (B \cup C)$
+    \item $(A \cap B) \cup (A \cap C)$
+\end{itemize}
+
+\section*{Lösung}
+
+\subsection*{Was bedeuten die Symbole nochmal?}
+\begin{itemize}
+    \item $\cap$ = \textbf{Schnittmenge} ("`UND"' -- nur was in BEIDEN Mengen ist)
+    \item $\cup$ = \textbf{Vereinigung} ("`ODER"' -- alles was in mindestens einer Menge ist)
+\end{itemize}
+
+\subsection*{Menge 1: $A \cap (B \cup C)$}
+
+\textbf{Schritt für Schritt:}
+\begin{enumerate}
+    \item Zuerst $B \cup C$ bestimmen: Alles was in $B$ oder $C$ (oder beiden) ist.
+    \item Dann davon nur das nehmen, was auch in $A$ ist (Schnitt mit $A$).
+\end{enumerate}
+
+\textit{In Worten: "`Alles was in A ist UND gleichzeitig in B oder C (oder beiden)."'}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+    \begin{scope}[fill opacity=0.3]
+        % Highlight the intersection A ∩ (B ∪ C)
+        \clip (0,0) circle (2cm);
+        \fill[blue] (1.5,-1) circle (2cm);
+        \fill[blue] (3,0) circle (2cm);
+    \end{scope}
+
+    % Draw circles
+    \draw (0,0) circle (2cm) node[above left=1.2cm] {$A$};
+    \draw (3,0) circle (2cm) node[above right=1.2cm] {$B$};
+    \draw (1.5,-1) circle (2cm) node[below=1.5cm] {$C$};
+
+    \node at (1.5, -4) {\textbf{$A \cap (B \cup C)$} -- blau markiert};
+\end{tikzpicture}
+\end{center}
+
+\subsection*{Menge 2: $(A \cap B) \cup (A \cap C)$}
+
+\textbf{Schritt für Schritt:}
+\begin{enumerate}
+    \item $A \cap B$: Alles was in $A$ UND $B$ ist.
+    \item $A \cap C$: Alles was in $A$ UND $C$ ist.
+    \item Vereinigung davon: Alles was in mindestens einem der beiden Schnitte liegt.
+\end{enumerate}
+
+\textit{In Worten: "`Alles was (in A und B) oder (in A und C) ist."'}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+    \begin{scope}[fill opacity=0.3]
+        % A ∩ B
+        \clip (0,0) circle (2cm);
+        \fill[red] (3,0) circle (2cm);
+    \end{scope}
+    \begin{scope}[fill opacity=0.3]
+        % A ∩ C
+        \clip (0,0) circle (2cm);
+        \fill[red] (1.5,-1) circle (2cm);
+    \end{scope}
+
+    % Draw circles
+    \draw (0,0) circle (2cm) node[above left=1.2cm] {$A$};
+    \draw (3,0) circle (2cm) node[above right=1.2cm] {$B$};
+    \draw (1.5,-1) circle (2cm) node[below=1.5cm] {$C$};
+
+    \node at (1.5, -4) {\textbf{$(A \cap B) \cup (A \cap C)$} -- rot markiert};
+\end{tikzpicture}
+\end{center}
+
+\subsection*{Was fällt auf?}
+
+\begin{center}
+\fbox{%
+    \parbox{0.8\textwidth}{%
+        \centering
+        \textbf{Beide Mengen sind identisch!}
+
+        \vspace{0.5em}
+        $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$
+
+        \vspace{0.5em}
+        Das ist das \textbf{Distributivgesetz} der Mengenlehre.
+    }%
+}
+\end{center}
+
+\textbf{Warum?} $\cap$ und $\cup$ verhalten sich wie Multiplikation und Addition:
+
+Genau wie $a \cdot (b + c) = a \cdot b + a \cdot c$ in der Arithmetik, gilt:
+
+$A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$
+
+\textit{Der Schnitt "`verteilt sich"' über die Vereinigung -- genau wie Multiplikation über Addition.}
+
+\end{document}

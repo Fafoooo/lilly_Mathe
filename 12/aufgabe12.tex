@@ -1,0 +1,193 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{parskip}
+
+\title{\textbf{Aufgabe 12 -- Lösung} \\ Methoden I: Mathematik, 2026S}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Grundregel}
+Der \textbf{Definitionsbereich} $D$ enthält alle $x$-Werte, für die die Funktion definiert ist. Probleme entstehen bei:
+\begin{itemize}
+    \item \textbf{Division durch 0} -- Nenner $\neq 0$
+    \item \textbf{Wurzel aus negativer Zahl} -- Ausdruck unter $\sqrt{\phantom{x}} \geq 0$
+\end{itemize}
+
+% ============================================================
+\section*{(a) $f_1(x) = \sqrt{\dfrac{x - 3}{(x-5)(x-1)}}$}
+
+\textbf{Bedingung 1:} Nenner $\neq 0$: $(x-5)(x-1) \neq 0$, also $x \neq 5$ und $x \neq 1$.
+
+\textbf{Bedingung 2:} Ausdruck unter der Wurzel $\geq 0$:
+\[
+    \frac{x - 3}{(x-5)(x-1)} \geq 0
+\]
+
+Nullstellen und Polstellen: $x = 1, 3, 5$. Diese teilen die Zahlengerade in Intervalle:
+
+\begin{center}
+\begin{tabular}{c|cccc}
+    Intervall & $x - 3$ & $x - 5$ & $x - 1$ & Bruch \\
+    \hline
+    $x < 1$ & $-$ & $-$ & $-$ & $\frac{-}{(-)(-))} = \frac{-}{+} = -$ \\
+    $1 < x < 3$ & $-$ & $-$ & $+$ & $\frac{-}{(-)(+)} = \frac{-}{-} = +$ \\
+    $3 < x < 5$ & $+$ & $-$ & $+$ & $\frac{+}{(-)(+)} = \frac{+}{-} = -$ \\
+    $x > 5$ & $+$ & $+$ & $+$ & $\frac{+}{(+)(+)} = +$
+\end{tabular}
+\end{center}
+
+Der Bruch ist $\geq 0$ in den Intervallen $(1, 3]$ und $(5, \infty)$.
+
+Bei $x = 3$ ist der Bruch $= 0$ (erlaubt: $\sqrt{0} = 0$).
+
+Bei $x = 1$ und $x = 5$: Nenner $= 0$ (verboten).
+
+\[
+    \boxed{D = (1, 3] \cup (5, +\infty)}
+\]
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines=middle, xlabel={$x$}, ylabel={$y$},
+    xmin=-1, xmax=9, ymin=-0.5, ymax=4,
+    width=12cm, height=6cm, samples=200,
+    restrict y to domain=0:4,
+]
+    \addplot[blue, thick, domain=1.01:3] {sqrt((x-3)/((x-5)*(x-1)))};
+    \addplot[blue, thick, domain=5.01:9] {sqrt((x-3)/((x-5)*(x-1)))};
+    \addplot[dashed, gray] coordinates {(1,-0.5) (1,4)};
+    \addplot[dashed, gray] coordinates {(5,-0.5) (5,4)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+% ============================================================
+\section*{(b) $f_2(x) = \sqrt{\dfrac{3x^2}{x^2 - 1}}$}
+
+\textbf{Bedingung 1:} $x^2 - 1 \neq 0$, also $x \neq \pm 1$.
+
+\textbf{Bedingung 2:} $\frac{3x^2}{x^2 - 1} \geq 0$
+
+Der Zähler $3x^2 \geq 0$ immer (ist 0 nur bei $x = 0$).
+
+Also muss der Nenner auch $\geq 0$ sein (oder Zähler $= 0$):
+\begin{itemize}
+    \item $x = 0$: Bruch $= 0$ \checkmark
+    \item $x^2 - 1 > 0 \Leftrightarrow x^2 > 1 \Leftrightarrow |x| > 1 \Leftrightarrow x < -1$ oder $x > 1$
+\end{itemize}
+
+Bei $x = 0$ ist der Bruch $= 0$ (erlaubt), aber $0$ liegt im Intervall $(-1, 1)$, wo der Nenner negativ ist. Also: $\frac{0}{\text{negativ}} = 0 \geq 0$ -- das ist erlaubt!
+
+Genauer: Für $-1 < x < 1$ (und $x \neq 0$) ist $x^2 - 1 < 0$ und $3x^2 > 0$, also Bruch $< 0$ -- nicht erlaubt.
+
+\[
+    \boxed{D = (-\infty, -1) \cup \{0\} \cup (1, +\infty)}
+\]
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines=middle, xlabel={$x$}, ylabel={$y$},
+    xmin=-4, xmax=4, ymin=-0.5, ymax=5,
+    width=12cm, height=6cm, samples=200,
+    restrict y to domain=0:5,
+]
+    \addplot[blue, thick, domain=-4:-1.01] {sqrt(3*x^2/(x^2-1))};
+    \addplot[blue, thick, domain=1.01:4] {sqrt(3*x^2/(x^2-1))};
+    \addplot[only marks, mark=*, blue, mark size=2pt] coordinates {(0,0)};
+    \addplot[dashed, gray] coordinates {(-1,-0.5) (-1,5)};
+    \addplot[dashed, gray] coordinates {(1,-0.5) (1,5)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+% ============================================================
+\section*{(c) $f_3(x) = \dfrac{7}{2x^3 - 5x^2 + 3x}$}
+
+\textbf{Bedingung:} Nenner $\neq 0$. Faktorisieren:
+
+\begin{align*}
+    2x^3 - 5x^2 + 3x &= x(2x^2 - 5x + 3)
+\end{align*}
+
+Quadratische Formel für $2x^2 - 5x + 3 = 0$:
+\[
+    x = \frac{5 \pm \sqrt{25 - 24}}{4} = \frac{5 \pm 1}{4}
+\]
+
+Also $x = \frac{6}{4} = \frac{3}{2}$ oder $x = \frac{4}{4} = 1$.
+
+Faktorisierung: $2x^3 - 5x^2 + 3x = x(x - 1)(2x - 3)$
+
+Nenner $= 0$ bei $x = 0$, $x = 1$, $x = \frac{3}{2}$.
+
+\[
+    \boxed{D = \mathbb{R} \setminus \left\{0,\; 1,\; \frac{3}{2}\right\}}
+\]
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines=middle, xlabel={$x$}, ylabel={$y$},
+    xmin=-2, xmax=3, ymin=-30, ymax=30,
+    width=12cm, height=7cm, samples=300,
+    restrict y to domain=-30:30,
+]
+    \addplot[blue, thick, domain=-2:-0.01] {7/(2*x^3 - 5*x^2 + 3*x)};
+    \addplot[blue, thick, domain=0.01:0.99] {7/(2*x^3 - 5*x^2 + 3*x)};
+    \addplot[blue, thick, domain=1.01:1.49] {7/(2*x^3 - 5*x^2 + 3*x)};
+    \addplot[blue, thick, domain=1.51:3] {7/(2*x^3 - 5*x^2 + 3*x)};
+    \addplot[dashed, gray] coordinates {(0,-30) (0,30)};
+    \addplot[dashed, gray] coordinates {(1,-30) (1,30)};
+    \addplot[dashed, gray] coordinates {(1.5,-30) (1.5,30)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+% ============================================================
+\section*{(d) $f_4(x) = \sqrt{\dfrac{-3x^2 - 1}{7x + 3}}$}
+
+\textbf{Bedingung 1:} $7x + 3 \neq 0$, also $x \neq -\frac{3}{7}$.
+
+\textbf{Bedingung 2:} $\frac{-3x^2 - 1}{7x + 3} \geq 0$
+
+\textbf{Zähler:} $-3x^2 - 1 = -(3x^2 + 1)$
+
+Da $3x^2 + 1 \geq 1 > 0$ für alle $x$, ist der Zähler \textbf{immer negativ}: $-3x^2 - 1 < 0$.
+
+Damit der Bruch $\geq 0$ wird, muss der Nenner auch negativ sein:
+
+$7x + 3 < 0 \Leftrightarrow x < -\frac{3}{7}$
+
+Aber: Der Bruch wird nie genau $= 0$ (Zähler ist nie 0), also nur strikt $> 0$ möglich.
+
+\[
+    \boxed{D = \left(-\infty,\; -\frac{3}{7}\right)}
+\]
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines=middle, xlabel={$x$}, ylabel={$y$},
+    xmin=-4, xmax=1, ymin=-0.5, ymax=5,
+    width=12cm, height=6cm, samples=200,
+    restrict y to domain=0:5,
+]
+    \addplot[blue, thick, domain=-4:-0.44] {sqrt((-3*x^2 - 1)/(7*x + 3))};
+    \addplot[dashed, gray] coordinates {(-3/7,-0.5) (-3/7,5)};
+    \node[gray] at (axis cs:-0.43,4.5) {\small $x = -\frac{3}{7}$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\end{document}
