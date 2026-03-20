@@ -1,0 +1,169 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{parskip}
+
+\title{\textbf{Aufgabe 10 -- Lösung} \\ Methoden I: Mathematik, 2026S}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Angabe}
+
+Gegeben ist die Funktion $f : \mathbb{R} \to \mathbb{R}$ mit $x \mapsto (x - 3)^2 + 4$.
+
+\begin{itemize}
+    \item Skizzieren Sie den Graph der Funktion.
+    \item Bestimmen Sie das Bild der Funktion.
+    \item Geben Sie das Monotonieverhalten der Funktion an.
+\end{itemize}
+
+% ============================================================
+\section*{Was ist das überhaupt für eine Funktion?}
+
+$f(x) = (x - 3)^2 + 4$ ist eine \textbf{Parabel} (quadratische Funktion).
+
+Wenn man sie ausmultipliziert:
+\[
+    f(x) = (x-3)^2 + 4 = x^2 - 6x + 9 + 4 = x^2 - 6x + 13
+\]
+
+Aber die \textbf{Scheitelform} $(x - 3)^2 + 4$ ist viel nützlicher, weil man sofort den \textbf{Scheitel} (= den tiefsten Punkt) ablesen kann:
+
+\begin{center}
+\fbox{%
+    \parbox{0.7\textwidth}{%
+        \centering
+        \textbf{Scheitelform:} $f(x) = (x - h)^2 + k$
+
+        \vspace{0.3em}
+        $\Rightarrow$ Scheitel liegt bei $(h,\, k)$
+
+        \vspace{0.3em}
+        Hier: $h = 3$, $k = 4$ $\Rightarrow$ \textbf{Scheitel = $(3,\, 4)$}
+    }%
+}
+\end{center}
+
+\textbf{Warum?} Weil $(x - 3)^2$ immer $\geq 0$ ist (ein Quadrat ist nie negativ). Der kleinste Wert ist $0$, und das passiert genau wenn $x = 3$. Dann ist $f(3) = 0 + 4 = 4$.
+
+% ============================================================
+\section*{Teil 1: Graph der Funktion}
+
+Um den Graph zu zeichnen, berechnen wir ein paar Punkte:
+
+\begin{center}
+\begin{tabular}{c|ccccccc}
+    $x$ & 0 & 1 & 2 & \textbf{3} & 4 & 5 & 6 \\
+    \hline
+    $f(x)$ & 13 & 8 & 5 & \textbf{4} & 5 & 8 & 13
+\end{tabular}
+\end{center}
+
+\textbf{Beobachtung:} Die Werte sind \textbf{symmetrisch} um $x = 3$. Links und rechts vom Scheitel steigen die Werte gleich schnell an. Das liegt daran, dass $(x-3)^2$ symmetrisch um $x = 3$ ist.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines = middle,
+    xlabel = {$x$},
+    ylabel = {$y$},
+    xmin = -1, xmax = 7.5,
+    ymin = -0.5, ymax = 16,
+    width = 12cm,
+    height = 9cm,
+    grid = major,
+    xtick = {-1,0,...,7},
+    ytick = {0,2,...,16},
+    samples = 100,
+    legend pos = north west,
+]
+    \addplot[blue, thick, domain=-1:7.5] {(x-3)^2 + 4};
+    \addlegendentry{$f(x) = (x-3)^2 + 4$}
+
+    % Scheitelpunkt
+    \addplot[only marks, mark=*, mark size=3pt, red] coordinates {(3,4)};
+    \node[red, above right] at (axis cs:3.2,4) {\textbf{Scheitel $(3, 4)$}};
+
+    % Wertetabelle Punkte
+    \addplot[only marks, mark=o, mark size=2pt, black] coordinates {
+        (0,13) (1,8) (2,5) (4,5) (5,8) (6,13)
+    };
+
+    % Symmetrieachse
+    \addplot[dashed, gray, thin] coordinates {(3,-0.5) (3,16)};
+    \node[gray, above] at (axis cs:3,15.5) {\small Symmetrieachse $x = 3$};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+% ============================================================
+\section*{Teil 2: Bild der Funktion}
+
+Das \textbf{Bild} (auch Wertebereich) ist die Menge aller $y$-Werte, die die Funktion annehmen kann.
+
+\textbf{Überlegung Schritt für Schritt:}
+
+\begin{enumerate}
+    \item $(x - 3)^2 \geq 0$ für alle $x \in \mathbb{R}$ \quad (Quadrate sind nie negativ)
+    \item Also: $f(x) = \underbrace{(x-3)^2}_{\geq\, 0} + 4 \;\geq\; 4$ \quad für alle $x$
+    \item Der Wert $4$ wird tatsächlich erreicht, nämlich bei $x = 3$: \quad $f(3) = 0 + 4 = 4$ \checkmark
+    \item Nach oben gibt es keine Grenze: für immer größere $|x - 3|$ wird $f(x)$ beliebig groß
+\end{enumerate}
+
+\begin{center}
+\fbox{%
+    \parbox{0.5\textwidth}{%
+        \centering
+        \textbf{Bild von $f$:} $\quad f(\mathbb{R}) = [4,\, +\infty)$
+
+        \vspace{0.3em}
+        D.h. alle reellen Zahlen $\geq 4$.
+    }%
+}
+\end{center}
+
+% ============================================================
+\section*{Teil 3: Monotonieverhalten}
+
+\textbf{Was bedeutet Monotonie?}
+\begin{itemize}
+    \item \textbf{Monoton steigend:} Wenn $x$ größer wird, wird auch $f(x)$ größer. \\ (Der Graph geht nach oben.)
+    \item \textbf{Monoton fallend:} Wenn $x$ größer wird, wird $f(x)$ kleiner. \\ (Der Graph geht nach unten.)
+\end{itemize}
+
+Schauen wir uns die Parabel an:
+
+\begin{itemize}
+    \item \textbf{Links vom Scheitel} ($x < 3$): Wenn wir von links nach rechts gehen, fällt der Graph $\Rightarrow$ \textbf{monoton fallend}
+
+    \textit{Beispiel:} $f(0) = 13 > f(1) = 8 > f(2) = 5 > f(3) = 4$ \checkmark
+
+    \item \textbf{Rechts vom Scheitel} ($x > 3$): Wenn wir von links nach rechts gehen, steigt der Graph $\Rightarrow$ \textbf{monoton steigend}
+
+    \textit{Beispiel:} $f(3) = 4 < f(4) = 5 < f(5) = 8 < f(6) = 13$ \checkmark
+\end{itemize}
+
+\begin{center}
+\fbox{%
+    \parbox{0.7\textwidth}{%
+        \centering
+        $f$ ist \textbf{monoton fallend} auf $(-\infty,\, 3]$
+
+        \vspace{0.3em}
+        $f$ ist \textbf{monoton steigend} auf $[3,\, +\infty)$
+    }%
+}
+\end{center}
+
+\textbf{Warum genau bei $x = 3$?} Weil dort der Scheitel ist -- der tiefste Punkt. Links davon geht's runter zum Scheitel, rechts davon geht's wieder rauf.
+
+\end{document}
