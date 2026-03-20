@@ -1,0 +1,471 @@
+\documentclass[10pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{geometry}
+\geometry{margin=1.5cm}
+\usepackage{parskip}
+\usepackage{multicol}
+\usepackage{enumitem}
+\setlist{nosep, leftmargin=1.5em}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+
+\definecolor{defblue}{RGB}{30, 100, 200}
+\definecolor{tipgreen}{RGB}{30, 140, 60}
+\definecolor{warnred}{RGB}{200, 40, 40}
+
+\newtcolorbox{defbox}[1][]{colback=defblue!5, colframe=defblue!70, title=#1, fonttitle=\bfseries, breakable}
+\newtcolorbox{tipbox}[1][]{colback=tipgreen!5, colframe=tipgreen!70, title=#1, fonttitle=\bfseries, breakable}
+\newtcolorbox{warnbox}[1][]{colback=warnred!5, colframe=warnred!70, title=#1, fonttitle=\bfseries, breakable}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{center}
+    {\LARGE\textbf{Methoden I: Mathematik -- Cheatsheet}} \\[4pt]
+    {\large Alles was du brauchst, auf einen Blick.}
+\end{center}
+
+\hrule
+\vspace{0.5em}
+
+% ============================================================
+% SECTION 1: MENGEN
+% ============================================================
+\section*{1. Mengen (Sets)}
+
+\begin{defbox}[Zahlenmengen]
+\begin{tabular}{ll}
+    $\mathbb{N} = \{0, 1, 2, 3, \ldots\}$ & Nat\"urliche Zahlen (mit 0!) \\
+    $\mathbb{Z} = \{\ldots, -2, -1, 0, 1, 2, \ldots\}$ & Ganze Zahlen \\
+    $\mathbb{Q}$ & Br\"uche (rationale Zahlen) \\
+    $\mathbb{R}$ & Alle reellen Zahlen (inkl. $\sqrt{2}$, $\pi$, \ldots)
+\end{tabular}
+\end{defbox}
+
+\begin{defbox}[Schreibweisen]
+\textbf{Aufz\"ahlend:} $A = \{2, 4, 6, 8\}$ -- Elemente einzeln hinschreiben.
+
+\textbf{Beschreibend:} $A = \{x \in \mathbb{N} \mid x \text{ ist gerade und } x \leq 8\}$
+
+Lies: "`Alle nat\"urlichen Zahlen $x$, f\"ur die gilt: \ldots"'
+
+$\mid$ oder $:$ bedeutet "`f\"ur die gilt"'
+\end{defbox}
+
+\begin{defbox}[Mengenoperationen -- Die Big 4]
+\begin{tabular}{lll}
+    $A \cup B$ & \textbf{Vereinigung} & alles was in $A$ \textbf{oder} $B$ ist \\
+    $A \cap B$ & \textbf{Schnitt} & nur was in $A$ \textbf{und} $B$ ist \\
+    $A \setminus B$ & \textbf{Differenz} & alles in $A$, was \textbf{nicht} in $B$ ist \\
+    $A^c$ & \textbf{Komplement} & alles was \textbf{nicht} in $A$ ist
+\end{tabular}
+\end{defbox}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.6]
+    % Union
+    \begin{scope}[xshift=0cm]
+        \fill[blue!20] (0,0) circle (1.2) (1.5,0) circle (1.2);
+        \draw (0,0) circle (1.2) node[left=0.8cm] {\small$A$};
+        \draw (1.5,0) circle (1.2) node[right=0.8cm] {\small$B$};
+        \node at (0.75,-2) {\small$A \cup B$};
+    \end{scope}
+    % Intersection
+    \begin{scope}[xshift=5cm]
+        \draw (0,0) circle (1.2) node[left=0.8cm] {\small$A$};
+        \draw (1.5,0) circle (1.2) node[right=0.8cm] {\small$B$};
+        \begin{scope}
+            \clip (0,0) circle (1.2);
+            \fill[red!30] (1.5,0) circle (1.2);
+        \end{scope}
+        \node at (0.75,-2) {\small$A \cap B$};
+    \end{scope}
+    % Difference
+    \begin{scope}[xshift=10cm]
+        \fill[orange!30] (0,0) circle (1.2);
+        \begin{scope}
+            \clip (1.5,0) circle (1.2);
+            \fill[white] (0,0) circle (1.5);
+        \end{scope}
+        \draw (0,0) circle (1.2) node[left=0.8cm] {\small$A$};
+        \draw (1.5,0) circle (1.2) node[right=0.8cm] {\small$B$};
+        \node at (0.75,-2) {\small$A \setminus B$};
+    \end{scope}
+    % Complement
+    \begin{scope}[xshift=15cm]
+        \fill[green!20] (-1.8,-1.5) rectangle (1.8,1.5);
+        \fill[white] (0,0) circle (1.2);
+        \draw (0,0) circle (1.2) node {\small$A$};
+        \draw (-1.8,-1.5) rectangle (1.8,1.5);
+        \node at (1.3,1.1) {\small$A^c$};
+        \node at (0,-2) {\small$A^c$};
+    \end{scope}
+\end{tikzpicture}
+\end{center}
+
+\begin{tipbox}[Wichtige Rechenregeln]
+\begin{tabular}{ll}
+    \textbf{Distributivgesetz:} & $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$ \\
+    & $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$ \\[4pt]
+    \textbf{De Morgan:} & $(A \cup B)^c = A^c \cap B^c$ \\
+    & $(A \cap B)^c = A^c \cup B^c$ \\[4pt]
+    \textbf{Leere Menge:} & $A \cap \emptyset = \emptyset$ \quad $A \cup \emptyset = A$
+\end{tabular}
+\end{tipbox}
+
+% ============================================================
+% SECTION 2: LOGIK
+% ============================================================
+\section*{2. Logik: Notwendig \& Hinreichend}
+
+\begin{defbox}[Die drei Typen]
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{lll}
+    \textbf{Hinreichend} & $P \Rightarrow Q$ & "`Wenn P, dann Q"' \\
+    & & P \textit{reicht aus} damit Q gilt \\[4pt]
+    \textbf{Notwendig} & $Q \Rightarrow P$ & "`Ohne P kein Q"' \\
+    & & P \textit{muss} gelten damit Q gelten kann \\[4pt]
+    \textbf{Beides} & $P \Leftrightarrow Q$ & "`P genau dann wenn Q"' \\
+    & & P und Q bedingen sich gegenseitig
+\end{tabular}
+\end{defbox}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.7]
+    % Hinreichend
+    \begin{scope}[xshift=0cm]
+        \fill[blue!15] (0,0) circle (1.5);
+        \fill[blue!30] (0,0) circle (0.8);
+        \node at (0,0) {\small$P$};
+        \node at (0,1.2) {\small$Q$};
+        \node at (0,-2.2) {\small Hinreichend};
+        \node at (0,-2.8) {\small $P \subseteq Q$};
+    \end{scope}
+    % Notwendig
+    \begin{scope}[xshift=5cm]
+        \fill[red!15] (0,0) circle (0.8);
+        \fill[red!30] (0,0) circle (1.5);
+        \draw (0,0) circle (0.8);
+        \draw (0,0) circle (1.5);
+        \node at (0,0) {\small$Q$};
+        \node at (0,1.2) {\small$P$};
+        \node at (0,-2.2) {\small Notwendig};
+        \node at (0,-2.8) {\small $Q \subseteq P$};
+    \end{scope}
+    % Beides
+    \begin{scope}[xshift=10cm]
+        \fill[green!25] (0,0) circle (1);
+        \node at (0,0) {\small$P = Q$};
+        \node at (0,-2.2) {\small Beides};
+        \node at (0,-2.8) {\small $P = Q$};
+    \end{scope}
+\end{tikzpicture}
+\end{center}
+
+\begin{warnbox}[So pr\"ufst du es]
+\begin{enumerate}
+    \item "`$P$ ist hinreichend f\"ur $Q$"' $\rightarrow$ Pr\"ufe: Gilt $P \Rightarrow Q$? (Gegenbeispiel suchen!)
+    \item "`$P$ ist notwendig f\"ur $Q$"' $\rightarrow$ Pr\"ufe: Gilt $Q \Rightarrow P$?
+    \item Falsch? $\rightarrow$ Korrektur: Welche Richtung stimmt wirklich?
+\end{enumerate}
+\end{warnbox}
+
+% ============================================================
+% SECTION 3: SUMMENZEICHEN
+% ============================================================
+\section*{3. Summenzeichen $\sum$}
+
+\begin{defbox}[Grundform]
+\[
+    \sum_{k=a}^{b} f(k) = f(a) + f(a+1) + f(a+2) + \ldots + f(b)
+\]
+
+$k$ = Laufvariable, $a$ = Startwert, $b$ = Endwert, $f(k)$ = was berechnet wird.
+\end{defbox}
+
+\begin{defbox}[Wichtige Formeln]
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{ll}
+    $\displaystyle\sum_{k=1}^{n} 1 = n$ & (z\"ahlt einfach) \\
+    $\displaystyle\sum_{k=1}^{n} k = \frac{n(n+1)}{2}$ & (Gau\ss{}sche Summenformel) \\
+    $\displaystyle\sum_{k=1}^{n} k^2 = \frac{n(n+1)(2n+1)}{6}$ & (Quadratsumme) \\
+    $\displaystyle\sum_{k=1}^{n} k^3 = \left(\frac{n(n+1)}{2}\right)^2$ & (Kubiksumme)
+\end{tabular}
+\end{defbox}
+
+\begin{tipbox}[Rechenregeln]
+\begin{align*}
+    \sum_{k=1}^{n} c \cdot f(k) &= c \cdot \sum_{k=1}^{n} f(k) & \text{(Konstante rausziehen)} \\[4pt]
+    \sum_{k=1}^{n} \left(f(k) + g(k)\right) &= \sum_{k=1}^{n} f(k) + \sum_{k=1}^{n} g(k) & \text{(Aufteilen)}
+\end{align*}
+\end{tipbox}
+
+\begin{tipbox}[Muster erkennen (f\"ur Aufgabe 4)]
+\begin{tabular}{ll}
+    \textbf{Arithmetische Folge} (konstante Differenz $d$): & $a_k = a_0 + k \cdot d$ \\
+    Bsp: $5, 9, 13, 17, \ldots$ $\rightarrow$ $d = 4$, also $a_k = 5 + 4k$ \\[4pt]
+    \textbf{Geometrische Folge} (konstanter Faktor $q$): & $a_k = a_0 \cdot q^k$ \\
+    Bsp: $1, 4, 16, 64, \ldots$ $\rightarrow$ $q = 4$, also $a_k = 4^k$ \\[4pt]
+    \textbf{Produkte}: & $k \cdot (k+1)$, $\frac{f(k)}{g(k)}$, etc.
+\end{tabular}
+\end{tipbox}
+
+% ============================================================
+% SECTION 4: DOPPELSUMMEN
+% ============================================================
+\section*{4. Doppelsummen}
+
+\begin{defbox}[Prinzip: Von innen nach au\ss{}en]
+\[
+    \sum_{j=a}^{b}\; \sum_{i=c}^{d} f(i, j) = \sum_{j=a}^{b} \underbrace{\left(\sum_{i=c}^{d} f(i, j)\right)}_{\text{erst das hier (f\"ur festes } j\text{)}}
+\]
+
+\textbf{Schritt 1:} $j$ festhalten. Innere Summe \"uber $i$ berechnen.
+
+\textbf{Schritt 2:} Ergebnisse f\"ur alle $j$ addieren.
+\end{defbox}
+
+\begin{warnbox}[Achtung: Variable Grenzen!]
+Wenn die innere Grenze von $j$ abh\"angt (z.B. $\sum_{i=1}^{j}$), \"andert sich die Anzahl der Summanden je nach $j$!
+
+Beispiel: $\displaystyle\sum_{j=1}^{3} \sum_{i=1}^{j} i$ = $(1)$ + $(1+2)$ + $(1+2+3)$ = $1 + 3 + 6 = 10$
+\end{warnbox}
+
+% ============================================================
+% SECTION 5: BINOMIALKOEFFIZIENT
+% ============================================================
+\section*{5. Binomialkoeffizient \& Pascalsches Dreieck}
+
+\begin{defbox}[Binomialkoeffizient]
+\[
+    \binom{n}{k} = \frac{n!}{k! \cdot (n-k)!} \qquad \text{Lies: "`$n$ \"uber $k$"'}
+\]
+
+\textbf{Beispiel:} $\binom{7}{3} = \frac{7!}{3! \cdot 4!} = \frac{7 \cdot 6 \cdot 5}{3 \cdot 2 \cdot 1} = 35$
+
+\textbf{Trick:} Z\"ahler: $k$ Zahlen abw\"arts ab $n$. Nenner: $k!$
+\end{defbox}
+
+\begin{defbox}[Pascalsches Dreieck]
+Jede Zahl = Summe der zwei dar\"uber. Zeile $n$ gibt $\binom{n}{0}, \binom{n}{1}, \ldots, \binom{n}{n}$.
+
+\begin{center}
+\begin{tabular}{rccccccccccccc}
+    $n=0$: & & & & & & & 1 \\
+    $n=1$: & & & & & & 1 & & 1 \\
+    $n=2$: & & & & & 1 & & 2 & & 1 \\
+    $n=3$: & & & & 1 & & 3 & & 3 & & 1 \\
+    $n=4$: & & & 1 & & 4 & & 6 & & 4 & & 1 \\
+    $n=5$: & & 1 & & 5 & & 10 & & 10 & & 5 & & 1 \\
+    $n=6$: & 1 & & 6 & & 15 & & 20 & & 15 & & 6 & & 1
+\end{tabular}
+\end{center}
+\end{defbox}
+
+\begin{defbox}[Binomischer Lehrsatz]
+\[
+    (a + b)^n = \sum_{k=0}^{n} \binom{n}{k} \cdot a^{n-k} \cdot b^k
+\]
+
+\textbf{So gehst du vor:}
+\begin{enumerate}
+    \item Identifiziere $a$, $b$ und $n$
+    \item Binomialkoeffizienten bestimmen (Dreieck oder Formel)
+    \item Jeden Term berechnen: $\binom{n}{k} \cdot a^{n-k} \cdot b^k$
+    \item Achtung bei negativem $b$: Vorzeichen wechselt! $(-b)^k$ ist $+$ wenn $k$ gerade, $-$ wenn $k$ ungerade
+\end{enumerate}
+\end{defbox}
+
+\begin{tipbox}[Symmetrie-Trick]
+$\binom{n}{k} = \binom{n}{n-k}$
+
+Beispiel: $\binom{7}{6} = \binom{7}{1} = 7$ -- Spart Rechenarbeit!
+\end{tipbox}
+
+% ============================================================
+% SECTION 6: FUNKTIONEN
+% ============================================================
+\section*{6. Funktionen}
+
+\begin{defbox}[Definitionsbereich $D$ finden]
+Der Definitionsbereich enth\"alt alle $x$, f\"ur die $f(x)$ \textbf{definiert} ist.
+
+\textbf{Probleme und L\"osungen:}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{lll}
+    \textbf{Problem} & \textbf{Bedingung} & \textbf{Beispiel} \\
+    \hline
+    Division durch 0 & Nenner $\neq 0$ & $\frac{1}{x-3}$: $x \neq 3$ \\
+    Wurzel aus negativ & Radikand $\geq 0$ & $\sqrt{x-2}$: $x \geq 2$ \\
+    Beides kombiniert & Beide Bed. erf\"ullen & $\sqrt{\frac{A}{B}}$: $B \neq 0$ und $\frac{A}{B} \geq 0$
+\end{tabular}
+\end{defbox}
+
+\begin{defbox}[Vorzeichentabelle (f\"ur Br\"uche unter Wurzeln)]
+\textbf{Wann ist $\frac{f(x)}{g(x)} \geq 0$?} Wenn Z\"ahler und Nenner \textbf{gleiches} Vorzeichen haben.
+
+\textbf{Methode:}
+\begin{enumerate}
+    \item Nullstellen von Z\"ahler und Nenner finden
+    \item Zahlengerade in Intervalle aufteilen
+    \item In jedem Intervall: Vorzeichen von Z\"ahler und Nenner pr\"ufen
+    \item Bruch-Vorzeichen = $\frac{\text{Vorzeichen Z\"ahler}}{\text{Vorzeichen Nenner}}$
+\end{enumerate}
+\end{defbox}
+
+\begin{defbox}[Bild (Wertebereich) einer Funktion]
+Das \textbf{Bild} = Menge aller $y$-Werte, die $f$ annimmt.
+
+\textbf{F\"ur Parabeln} $f(x) = a(x - h)^2 + k$:
+\begin{itemize}
+    \item $a > 0$ (nach oben offen): Bild $= [k, +\infty)$ \quad (Minimum bei $y = k$)
+    \item $a < 0$ (nach unten offen): Bild $= (-\infty, k]$ \quad (Maximum bei $y = k$)
+\end{itemize}
+\end{defbox}
+
+\begin{defbox}[Monotonie]
+\begin{tabular}{ll}
+    \textbf{Monoton steigend:} & $x_1 < x_2 \Rightarrow f(x_1) \leq f(x_2)$ \\
+    & Graph geht nach oben $\nearrow$ \\[4pt]
+    \textbf{Monoton fallend:} & $x_1 < x_2 \Rightarrow f(x_1) \geq f(x_2)$ \\
+    & Graph geht nach unten $\searrow$
+\end{tabular}
+
+\vspace{0.3em}
+\textbf{Bei Parabeln:} Scheitel ist der Wendepunkt. Links fallend, rechts steigend (wenn $a > 0$).
+\end{defbox}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.55]
+    % Parabel nach oben
+    \begin{scope}[xshift=0cm]
+        \begin{axis}[
+            axis lines=middle, width=7cm, height=5cm,
+            xmin=-2, xmax=6, ymin=-1, ymax=10,
+            ticks=none, title={\small $a > 0$: nach oben offen}
+        ]
+            \addplot[blue, thick, domain=-1:5, samples=50] {0.8*(x-2)^2 + 1};
+            \addplot[only marks, mark=*, red, mark size=2pt] coordinates {(2,1)};
+            \node[red, below] at (axis cs:2,0.5) {\small Scheitel};
+            \draw[->, thick, orange] (axis cs:0,5) -- (axis cs:1.5,1.5);
+            \draw[->, thick, green!60!black] (axis cs:2.5,1.5) -- (axis cs:4,5);
+            \node[orange] at (axis cs:-0.5,7) {\small $\searrow$};
+            \node[green!60!black] at (axis cs:4.5,7) {\small $\nearrow$};
+        \end{axis}
+    \end{scope}
+    % Parabel nach unten
+    \begin{scope}[xshift=9cm]
+        \begin{axis}[
+            axis lines=middle, width=7cm, height=5cm,
+            xmin=-2, xmax=6, ymin=-5, ymax=6,
+            ticks=none, title={\small $a < 0$: nach unten offen}
+        ]
+            \addplot[blue, thick, domain=-1:5, samples=50] {-0.8*(x-2)^2 + 4};
+            \addplot[only marks, mark=*, red, mark size=2pt] coordinates {(2,4)};
+            \node[red, above] at (axis cs:2,4.5) {\small Scheitel};
+            \draw[->, thick, green!60!black] (axis cs:0,-1) -- (axis cs:1.5,3.5);
+            \draw[->, thick, orange] (axis cs:2.5,3.5) -- (axis cs:4,-1);
+            \node[green!60!black] at (axis cs:-0.5,4) {\small $\nearrow$};
+            \node[orange] at (axis cs:4.5,4) {\small $\searrow$};
+        \end{axis}
+    \end{scope}
+\end{tikzpicture}
+\end{center}
+
+% ============================================================
+% SECTION 7: SCHEITELFORM
+% ============================================================
+\section*{7. Quadratische Funktionen (Scheitelform)}
+
+\begin{defbox}[Scheitelform]
+\[
+    f(x) = a(x - h)^2 + k
+\]
+\begin{itemize}
+    \item \textbf{Scheitel} (tiefster/h\"ochster Punkt): $(h, k)$
+    \item $a > 0$: Parabel \"offnet nach \textbf{oben} (Minimum)
+    \item $a < 0$: Parabel \"offnet nach \textbf{unten} (Maximum)
+    \item $|a|$ gro\ss{}: schmal. $|a|$ klein: breit.
+    \item $h$: Verschiebung nach \textbf{rechts}. $k$: Verschiebung nach \textbf{oben}.
+\end{itemize}
+\end{defbox}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.7]
+\begin{axis}[
+    axis lines=middle, xlabel={$x$}, ylabel={$y$},
+    xmin=-1, xmax=7, ymin=-1, ymax=12,
+    width=10cm, height=6cm, grid=major, samples=50,
+    legend style={at={(0.02,0.98)}, anchor=north west, font=\small}
+]
+    \addplot[blue, thick, domain=-0.5:6.5] {(x-3)^2};
+    \addlegendentry{$(x-3)^2$ -- Scheitel $(3,0)$}
+    \addplot[red, thick, domain=-0.5:6.5] {(x-3)^2 + 4};
+    \addlegendentry{$(x-3)^2 + 4$ -- Scheitel $(3,4)$}
+    \addplot[only marks, mark=*, mark size=2pt, blue] coordinates {(3,0)};
+    \addplot[only marks, mark=*, mark size=2pt, red] coordinates {(3,4)};
+    \draw[<->, dashed, gray] (axis cs:3,0.3) -- node[right] {\small $+4$} (axis cs:3,3.7);
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+% ============================================================
+% SECTION 8: KOSTENRECHNUNG
+% ============================================================
+\section*{8. Kostenfunktionen}
+
+\begin{defbox}[Grundbegriffe]
+\begin{tabular}{ll}
+    $C(Q)$ & \textbf{Gesamtkosten} f\"ur $Q$ Einheiten \\
+    $C(Q+1) - C(Q)$ & \textbf{Grenzkosten}: Mehrkosten f\"ur eine zus\"atzliche Einheit \\
+    $\frac{C(Q)}{Q}$ & \textbf{St\"uckkosten}: Kosten pro Einheit
+\end{tabular}
+
+\textbf{Grenzkosten berechnen:} $(Q+1)$ einsetzen, $C(Q)$ abziehen, vereinfachen.
+
+Nutze: $(Q+1)^2 = Q^2 + 2Q + 1$ und $(Q+1)^3 = Q^3 + 3Q^2 + 3Q + 1$
+\end{defbox}
+
+% ============================================================
+% SECTION 9: QUICK REFERENCE
+% ============================================================
+\section*{9. Schnellreferenz}
+
+\begin{tipbox}[Fakult\"at $n!$]
+$n! = 1 \cdot 2 \cdot 3 \cdot \ldots \cdot n$
+
+$0! = 1$ \quad $1! = 1$ \quad $2! = 2$ \quad $3! = 6$ \quad $4! = 24$ \quad $5! = 120$ \quad $6! = 720$ \quad $7! = 5040$
+\end{tipbox}
+
+\begin{tipbox}[Potenzen]
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{lllllllll}
+    $2^0=1$ & $2^1=2$ & $2^2=4$ & $2^3=8$ & $2^4=16$ & $2^5=32$ & $2^6=64$ & $2^7=128$ \\
+    $3^0=1$ & $3^1=3$ & $3^2=9$ & $3^3=27$ & $3^4=81$ & $3^5=243$ & $3^6=729$ & $3^7=2187$ \\
+    $4^0=1$ & $4^1=4$ & $4^2=16$ & $4^3=64$ & $4^4=256$ & $4^5=1024$ & $4^6=4096$ &
+\end{tabular}
+\end{tipbox}
+
+\begin{tipbox}[Primzahlen bis 50]
+$2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47$
+
+Merke: $1$ ist \textbf{keine} Primzahl! $2$ ist die einzige gerade Primzahl.
+\end{tipbox}
+
+\begin{warnbox}[H\"aufige Fehler]
+\begin{itemize}
+    \item $\mathbb{N}$ enth\"alt die $0$ (an der AAU)!
+    \item $<$ vs. $\leq$: Grenzen genau lesen! $x < 5$ hei\ss{}t 5 ist \textbf{nicht} dabei.
+    \item $(-a)^2 = a^2$ aber $-a^2 = -(a^2)$. Klammern beachten!
+    \item $\sqrt{x^2} = |x|$, nicht $x$! (z.B. $\sqrt{(-3)^2} = 3$, nicht $-3$)
+    \item Beim Binomischen Lehrsatz: $b$ kann negativ sein $\rightarrow$ Vorzeichen beachten!
+\end{itemize}
+\end{warnbox}
+
+\end{document}
