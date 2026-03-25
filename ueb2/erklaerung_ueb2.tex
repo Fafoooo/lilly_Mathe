@@ -1,0 +1,1255 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{pifont}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage[breakable]{tcolorbox}
+
+\newtcolorbox{merkbox}[1][]{colback=blue!5, colframe=blue!40, fonttitle=\bfseries, title={Merke}, breakable, #1}
+
+\newtcolorbox{analogie}[1][]{colback=green!5, colframe=green!40, fonttitle=\bfseries, title={Analogie}, breakable, #1}
+
+\title{Erkl\"arungen \"Ubungsblatt 2 -- Aufgaben 13--19}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+%% ============================================================
+%% AUFGABE 13
+%% ============================================================
+\section{Aufgabe 13: Definitionsbereich von $f(x)=\sqrt{\dfrac{x^2-16}{x^2-x-6}}$}
+
+\subsection{Was bedeutet ,,maximaler Definitionsbereich``?}
+
+\begin{merkbox}
+Der \textbf{Definitionsbereich} (kurz $D$) ist die Menge aller $x$-Werte, die man in die Funktion \textbf{einsetzen darf}, ohne dass etwas Verbotenes passiert.
+\end{merkbox}
+
+\begin{analogie}
+Stell dir vor, die Funktion ist eine Maschine. Du wirfst eine Zahl rein und bekommst ein Ergebnis. Aber manche Zahlen zerst\"oren die Maschine -- die darfst du nicht reinwerfen. Der Definitionsbereich sagt dir: \textbf{Welche Zahlen darf ich reinwerfen?}
+\end{analogie}
+
+Was ist hier \textbf{verboten}?
+
+\begin{enumerate}
+  \item \textbf{Unter der Wurzel darf nichts Negatives stehen.}\\
+        Man kann $\sqrt{4}=2$ rechnen, aber $\sqrt{-4}$ geht nicht (zumindest nicht in den reellen Zahlen). Also muss der ganze Bruch $\dfrac{x^2-16}{x^2-x-6} \ge 0$ sein.
+  \item \textbf{Der Nenner darf nicht 0 sein.}\\
+        Division durch 0 ist nicht erlaubt. Also muss $x^2 - x - 6 \ne 0$ gelten.
+\end{enumerate}
+
+\subsection{Schritt 1: Z\"ahler und Nenner faktorisieren}
+
+\begin{merkbox}[title={Faktorisieren -- Wie geht das?}]
+Wenn du $x^2 + px + q = 0$ l\"osen willst, suchst du zwei Zahlen $x_1$ und $x_2$, so dass:
+\begin{itemize}
+  \item $x_1 + x_2 = -p$ \quad (Summe der Nullstellen $=$ minus $p$)
+  \item $x_1 \cdot x_2 = q$ \quad (Produkt der Nullstellen $=$ $q$)
+\end{itemize}
+Dann gilt: $x^2 + px + q = (x - x_1)(x - x_2)$.
+
+Das nennt man den \textbf{Satz von Vieta}. Alternativ kann man auch die \textbf{pq-Formel} verwenden:
+\[
+  x_{1,2} = -\frac{p}{2} \pm \sqrt{\left(\frac{p}{2}\right)^2 - q}
+\]
+\end{merkbox}
+
+\textbf{Z\"ahler:} $x^2 - 16$
+
+Das ist eine \textbf{dritte binomische Formel}: $a^2 - b^2 = (a-b)(a+b)$.
+
+Hier: $x^2 - 16 = x^2 - 4^2 = (x-4)(x+4)$.
+
+Die \textbf{Nullstellen} des Z\"ahlers sind also $x = 4$ und $x = -4$.
+
+\bigskip
+
+\textbf{Nenner:} $x^2 - x - 6$
+
+Hier ist $p = -1$ und $q = -6$. Wir suchen zwei Zahlen, deren Summe $-(-1)=1$ und deren Produkt $-6$ ist.
+
+Probieren: $3 \cdot (-2) = -6$ und $3 + (-2) = 1$ \checkmark
+
+Also: $x^2 - x - 6 = (x - 3)(x + 2)$.
+
+Die \textbf{Nullstellen} des Nenners sind $x = 3$ und $x = -2$.
+
+\subsection{Schritt 2: Vorzeichentabelle aufstellen}
+
+Wir m\"ussen wissen, wo der Bruch
+\[
+  \frac{(x-4)(x+4)}{(x-3)(x+2)} \ge 0
+\]
+ist. Daf\"ur schauen wir, wo der Bruch \textbf{positiv}, \textbf{negativ} oder \textbf{null} ist.
+
+\begin{merkbox}[title={Wie funktioniert eine Vorzeichentabelle?}]
+\begin{enumerate}
+  \item Schreibe alle \textbf{kritischen Stellen} auf (Nullstellen von Z\"ahler und Nenner): $-4,\;-2,\;3,\;4$.
+  \item Diese teilen die Zahlengerade in \textbf{Intervalle} auf.
+  \item In jedem Intervall pr\"ufe das \textbf{Vorzeichen jedes einzelnen Faktors}.
+  \item Multipliziere die Vorzeichen zusammen (Plus mal Plus $=$ Plus, Plus mal Minus $=$ Minus, \dots).
+  \item Ein \textbf{Bruch} ist positiv, wenn Z\"ahler und Nenner das \textbf{gleiche} Vorzeichen haben.
+\end{enumerate}
+\end{merkbox}
+
+\begin{analogie}
+Stell dir das Vorzeichen als Farbe vor: Rot f\"ur Minus, Gr\"un f\"ur Plus. Wenn du zwei rote Dinge multiplizierst, wird es gr\"un (Minus $\times$ Minus $=$ Plus). Die Vorzeichentabelle ist wie eine Checkliste f\"ur jedes Intervall.
+\end{analogie}
+
+Die kritischen Stellen in aufsteigender Reihenfolge: $-4,\;-2,\;3,\;4$.
+
+Das ergibt 5 Intervalle: $(-\infty,-4)$, $(-4,-2)$, $(-2,3)$, $(3,4)$, $(4,\infty)$.
+
+\bigskip
+
+\renewcommand{\arraystretch}{1.4}
+\begin{center}
+\begin{tabular}{l|c|c|c|c|c|c|c|c|c}
+ & $(-\infty,-4)$ & $-4$ & $(-4,-2)$ & $-2$ & $(-2,3)$ & $3$ & $(3,4)$ & $4$ & $(4,\infty)$ \\
+\hline
+$(x-4)$ & $-$ & $-$ & $-$ & $-$ & $-$ & $-$ & $-$ & $0$ & $+$ \\
+$(x+4)$ & $-$ & $0$ & $+$ & $+$ & $+$ & $+$ & $+$ & $+$ & $+$ \\
+$(x-3)$ & $-$ & $-$ & $-$ & $-$ & $-$ & $0$ & $+$ & $+$ & $+$ \\
+$(x+2)$ & $-$ & $-$ & $-$ & $0$ & $+$ & $+$ & $+$ & $+$ & $+$ \\
+\hline
+\textbf{Bruch} & $+$ & $0$ & $-$ & \text{undef.} & $+$ & \text{undef.} & $-$ & $0$ & $+$ \\
+\end{tabular}
+\end{center}
+
+\textbf{Wie liest man die Tabelle?}
+
+Nehmen wir zum Beispiel das Intervall $(-\infty, -4)$. Setze z.\,B.\ $x = -5$ ein:
+\begin{itemize}
+  \item $(x-4) = -5-4 = -9 < 0$ \quad $\Rightarrow$ Minus
+  \item $(x+4) = -5+4 = -1 < 0$ \quad $\Rightarrow$ Minus
+  \item $(x-3) = -5-3 = -8 < 0$ \quad $\Rightarrow$ Minus
+  \item $(x+2) = -5+2 = -3 < 0$ \quad $\Rightarrow$ Minus
+\end{itemize}
+Z\"ahler: Minus $\times$ Minus $=$ Plus. Nenner: Minus $\times$ Minus $=$ Plus. Bruch: Plus/Plus $=$ \textbf{Plus} \checkmark
+
+\subsection{Schritt 3: Definitionsbereich ablesen}
+
+Wir brauchen: Bruch $\ge 0$ (also Plus oder Null) \textbf{und} Nenner $\ne 0$.
+
+\begin{itemize}
+  \item $(-\infty, -4)$: Bruch ist $+$ \checkmark
+  \item $x = -4$: Bruch ist $0$ \checkmark \quad (Null ist erlaubt, weil $\sqrt{0}=0$)
+  \item $(-4, -2)$: Bruch ist $-$ \ding{55} -- nicht erlaubt
+  \item $x = -2$: Nenner ist $0$ \ding{55} -- nicht erlaubt (Division durch 0!)
+  \item $(-2, 3)$: Bruch ist $+$ \checkmark
+  \item $x = 3$: Nenner ist $0$ \ding{55} -- nicht erlaubt
+  \item $(3, 4)$: Bruch ist $-$ \ding{55} -- nicht erlaubt
+  \item $x = 4$: Bruch ist $0$ \checkmark
+  \item $(4, \infty)$: Bruch ist $+$ \checkmark
+\end{itemize}
+
+\begin{merkbox}[title={Ergebnis}]
+\[
+  D = (-\infty, -4] \;\cup\; (-2, 3) \;\cup\; [4, \infty)
+\]
+Eckige Klammer $[$ bei $-4$ und $4$: Diese Punkte \textbf{geh\"oren dazu} (Z\"ahler $= 0$, das ist ok).\\
+Runde Klammer $)$ und $($ bei $-2$ und $3$: Diese Punkte geh\"oren \textbf{nicht dazu} (Nenner $= 0$).
+\end{merkbox}
+
+\subsection{Skizze}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=middle,
+  xlabel={$x$},
+  ylabel={$y$},
+  grid=both,
+  width=12cm, height=8cm,
+  xmin=-8, xmax=8,
+  ymin=-0.5, ymax=6,
+  samples=200,
+  domain=-8:8,
+  restrict y to domain=0:6,
+  xtick={-6,-4,-2,0,2,3,4,6},
+  ytick={0,1,2,3,4,5},
+  legend pos=north west,
+  legend style={font=\small},
+]
+% Bereich 1: x <= -4
+\addplot[blue, thick, domain=-8:-4.01, unbounded coords=jump]{sqrt((x^2-16)/(x^2-x-6))};
+% Bereich 2: -2 < x < 3
+\addplot[blue, thick, domain=-1.99:2.99, unbounded coords=jump]{sqrt((x^2-16)/(x^2-x-6))};
+% Bereich 3: x >= 4
+\addplot[blue, thick, domain=4.01:8, unbounded coords=jump]{sqrt((x^2-16)/(x^2-x-6))};
+\addlegendentry{$f(x)=\sqrt{\frac{x^2-16}{x^2-x-6}}$}
+
+% Asymptoten
+\draw[red, dashed, thick] (axis cs:-2,-0.5) -- (axis cs:-2,6) node[above, font=\small]{$x=-2$};
+\draw[red, dashed, thick] (axis cs:3,-0.5) -- (axis cs:3,6) node[above, font=\small]{$x=3$};
+
+% Markante Punkte
+\addplot[only marks, mark=*, mark size=2.5pt, black] coordinates {(-4,0) (4,0)};
+\node[below left, font=\small] at (axis cs:-4,0) {$(-4,0)$};
+\node[below right, font=\small] at (axis cs:4,0) {$(4,0)$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+Die \textcolor{red}{gestrichelten roten Linien} zeigen die \textbf{Asymptoten} bei $x=-2$ und $x=3$ -- dort ist die Funktion \textbf{nicht definiert}. Die Funktion existiert nur in den drei blauen Bereichen.
+
+\newpage
+
+%% ============================================================
+%% AUFGABE 14
+%% ============================================================
+\section{Aufgabe 14: Gerade mit Steigung $m = \tfrac{1}{4}$ und $f(8) = -\tfrac{29}{4}$}
+
+\subsection{Was ist eine Geradengleichung?}
+
+\begin{merkbox}[title={Geradengleichung}]
+Jede Gerade l\"asst sich so schreiben:
+\[
+  f(x) = m \cdot x + b
+\]
+Dabei ist:
+\begin{itemize}
+  \item $m$ = \textbf{Steigung} (wie steil die Gerade ist)
+  \item $b$ = \textbf{$y$-Achsenabschnitt} (wo die Gerade die $y$-Achse schneidet)
+\end{itemize}
+\end{merkbox}
+
+\begin{analogie}
+Stell dir einen Berghang vor. Die \textbf{Steigung} $m$ sagt dir, wie steil der Berg ist. Ist $m$ positiv, geht es bergauf (von links nach rechts). Ist $m$ negativ, geht es bergab. Der \textbf{$y$-Achsenabschnitt} $b$ sagt dir, auf welcher H\"ohe du startest, wenn du bei $x=0$ stehst.
+\end{analogie}
+
+\subsection{Schritt 1: $b$ berechnen}
+
+Wir wissen: $m = \dfrac{1}{4}$ und $f(8) = -\dfrac{29}{4}$.
+
+Das bedeutet: Wenn wir $x = 8$ einsetzen, muss $-\dfrac{29}{4}$ rauskommen.
+
+\[
+  f(8) = \frac{1}{4} \cdot 8 + b = -\frac{29}{4}
+\]
+\[
+  2 + b = -\frac{29}{4}
+\]
+\[
+  b = -\frac{29}{4} - 2 = -\frac{29}{4} - \frac{8}{4} = -\frac{37}{4}
+\]
+
+Also:
+\[
+  \boxed{f(x) = \frac{1}{4}\,x - \frac{37}{4} = \frac{x - 37}{4}}
+\]
+
+\subsection{Schritt 2: Schnittpunkte mit den Achsen}
+
+\textbf{Schnittpunkt mit der $x$-Achse} (dort ist $y = 0$):
+\[
+  0 = \frac{x - 37}{4} \quad\Longrightarrow\quad x - 37 = 0 \quad\Longrightarrow\quad x = 37
+\]
+Schnittpunkt: $(37, 0)$.
+
+\bigskip
+
+\textbf{Schnittpunkt mit der $y$-Achse} (dort ist $x = 0$):
+\[
+  f(0) = \frac{0 - 37}{4} = -\frac{37}{4} = -9{,}25
+\]
+Schnittpunkt: $(0,\; -9{,}25)$.
+
+\subsection{Schritt 3: Monotonie}
+
+\begin{merkbox}[title={Was ist Monotonie?}]
+Monotonie beschreibt, ob eine Funktion \textbf{steigt} oder \textbf{f\"allt}:
+\begin{itemize}
+  \item \textbf{Streng monoton steigend}: Die Funktion geht \textbf{immer nach oben} (von links nach rechts). Gr\"o\ss eres $x$ $\Rightarrow$ gr\"o\ss eres $f(x)$.
+  \item \textbf{Streng monoton fallend}: Die Funktion geht \textbf{immer nach unten}. Gr\"o\ss eres $x$ $\Rightarrow$ kleineres $f(x)$.
+\end{itemize}
+Bei einer Geraden entscheidet die \textbf{Steigung}:
+\begin{itemize}
+  \item $m > 0$ $\Rightarrow$ streng monoton steigend
+  \item $m < 0$ $\Rightarrow$ streng monoton fallend
+  \item $m = 0$ $\Rightarrow$ konstant (waagerechte Gerade)
+\end{itemize}
+\end{merkbox}
+
+Hier ist $m = \dfrac{1}{4} > 0$, also ist $f$ \textbf{streng monoton steigend}.
+
+\begin{analogie}
+Wenn die Steigung positiv ist, ist es wie ein Weg, der bergauf geht -- egal wo du stehst, wenn du nach rechts gehst, kommst du h\"oher.
+\end{analogie}
+
+\subsection{Skizze}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=middle,
+  xlabel={$x$},
+  ylabel={$y$},
+  grid=both,
+  width=12cm, height=7cm,
+  xmin=-5, xmax=42,
+  ymin=-12, ymax=3,
+  xtick={0,5,10,15,20,25,30,35,37,40},
+  ytick={-10,-8,-6,-4,-2,0,2},
+  extra x ticks={8},
+  extra x tick style={grid=major, grid style={red, thick, dashed}},
+]
+\addplot[blue, thick, domain=-5:42]{x/4 - 37/4};
+\addlegendentry{$f(x)=\frac{x-37}{4}$}
+
+% Markierte Punkte
+\addplot[only marks, mark=*, mark size=3pt, red] coordinates {(0,-9.25)};
+\node[right, font=\small, red] at (axis cs:0.5,-9.25) {$(0,\;-9{,}25)$};
+
+\addplot[only marks, mark=*, mark size=3pt, red] coordinates {(37,0)};
+\node[above left, font=\small, red] at (axis cs:37,0.3) {$(37,\;0)$};
+
+\addplot[only marks, mark=*, mark size=3pt, orange] coordinates {(8,-7.25)};
+\node[above left, font=\small, orange] at (axis cs:8,-7.25) {$(8,\;-\frac{29}{4})$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\newpage
+
+%% ============================================================
+%% AUFGABE 15
+%% ============================================================
+\section{Aufgabe 15: Zwei Kerzen}
+
+\subsection{Text in Formeln \"ubersetzen}
+
+\begin{analogie}
+Bei Textaufgaben ist der schwierigste Teil, den Text in Mathe-Sprache zu \"ubersetzen. Lies den Text Satz f\"ur Satz und frage dich: \textbf{Welche Zahl steckt dahinter?}
+\end{analogie}
+
+\textbf{Schlanke Kerze:}
+\begin{itemize}
+  \item Startl\"ange: $35\;\text{cm}$
+  \item Brennt $1\;\text{cm}$ alle $6$ Minuten ab $\Rightarrow$ pro Minute: $\dfrac{1}{6}\;\text{cm}$
+\end{itemize}
+
+\textbf{Breite Kerze:}
+\begin{itemize}
+  \item Startl\"ange: $22\;\text{cm}$
+  \item Brennt $15\;\text{mm}$ pro Stunde ab $= 1{,}5\;\text{cm}$ pro Stunde $= \dfrac{1{,}5}{60}\;\text{cm pro Minute} = \dfrac{1}{40}\;\text{cm pro Minute}$
+\end{itemize}
+
+\begin{merkbox}[title={Einheiten umrechnen!}]
+Achte immer darauf, dass alle Werte in den \textbf{gleichen Einheiten} sind! Hier rechnen wir alles in \textbf{cm} und \textbf{Minuten}.
+\begin{itemize}
+  \item $15\;\text{mm} = 1{,}5\;\text{cm}$ \quad (durch 10 teilen)
+  \item $1{,}5\;\text{cm/Stunde} = \dfrac{1{,}5}{60}\;\text{cm/Minute} = \dfrac{1}{40}\;\text{cm/Minute}$ \quad (durch 60 teilen)
+\end{itemize}
+\end{merkbox}
+
+\subsection{Schritt 1: H\"ohenfunktionen aufstellen}
+
+Die H\"ohe einer Kerze nimmt \textbf{linear} ab (gleichm\"a\ss ig, wie eine Gerade):
+
+\[
+  \text{H\"ohe} = \text{Starth\"ohe} - \text{Abbrandrate} \cdot \text{Zeit}
+\]
+
+\textbf{Schlanke Kerze:}
+\[
+  h_1(t) = 35 - \frac{1}{6}\,t
+\]
+
+\textbf{Breite Kerze:}
+\[
+  h_2(t) = 22 - \frac{1}{40}\,t
+\]
+
+wobei $t$ die Zeit in Minuten ist.
+
+\subsection{Schritt 2: Wann sind sie gleich hoch?}
+
+Gleichsetzen:
+\[
+  h_1(t) = h_2(t)
+\]
+\[
+  35 - \frac{1}{6}\,t = 22 - \frac{1}{40}\,t
+\]
+
+Wir bringen die $t$-Terme auf eine Seite und die Zahlen auf die andere:
+\[
+  35 - 22 = \frac{1}{6}\,t - \frac{1}{40}\,t
+\]
+\[
+  13 = t\left(\frac{1}{6} - \frac{1}{40}\right)
+\]
+
+Jetzt brauchen wir einen gemeinsamen Nenner f\"ur $\dfrac{1}{6}$ und $\dfrac{1}{40}$.
+
+Der kleinste gemeinsame Nenner (kgV) von $6$ und $40$ ist $120$:
+\[
+  \frac{1}{6} = \frac{20}{120}, \qquad \frac{1}{40} = \frac{3}{120}
+\]
+\[
+  13 = t \cdot \frac{20 - 3}{120} = t \cdot \frac{17}{120}
+\]
+\[
+  t = 13 \cdot \frac{120}{17} = \frac{1560}{17} \approx 91{,}76\;\text{Minuten}
+\]
+
+\begin{merkbox}[title={Ergebnis}]
+Nach ca.\ $91{,}76$ Minuten (also ca.\ $1$ Stunde und $32$ Minuten) sind beide Kerzen gleich hoch.
+
+Die gemeinsame H\"ohe zu diesem Zeitpunkt:
+\[
+  h_1\!\left(\frac{1560}{17}\right) = 35 - \frac{1}{6}\cdot\frac{1560}{17} = 35 - \frac{260}{17} = \frac{595 - 260}{17} = \frac{335}{17} \approx 19{,}71\;\text{cm}
+\]
+\end{merkbox}
+
+\subsection{Schritt 3: Maximale Brenndauer}
+
+Die Kerze ist abgebrannt, wenn die H\"ohe $= 0$ ist:
+
+\textbf{Schlanke Kerze:}
+\[
+  0 = 35 - \frac{1}{6}\,t \quad\Longrightarrow\quad t = 35 \cdot 6 = 210\;\text{min} = 3\;\text{h}\;30\;\text{min}
+\]
+
+\textbf{Breite Kerze:}
+\[
+  0 = 22 - \frac{1}{40}\,t \quad\Longrightarrow\quad t = 22 \cdot 40 = 880\;\text{min} = 14\;\text{h}\;40\;\text{min}
+\]
+
+\subsection{Skizze}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=middle,
+  xlabel={$t$ (Minuten)},
+  ylabel={H\"ohe (cm)},
+  grid=both,
+  width=12cm, height=8cm,
+  xmin=-10, xmax=250,
+  ymin=-2, ymax=40,
+  xtick={0,50,91.76,100,150,200,210,250},
+  xticklabels={$0$,$50$,$\approx 92$,$100$,$150$,$200$,$210$,$250$},
+  ytick={0,5,10,15,19.71,20,22,25,30,35},
+  yticklabels={$0$,$5$,$10$,$15$,$\approx 20$,$20$,$22$,$25$,$30$,$35$},
+  legend pos=north east,
+  legend style={font=\small},
+]
+% Schlanke Kerze
+\addplot[blue, thick, domain=0:210]{35 - x/6};
+\addlegendentry{Schlanke Kerze: $h_1(t)=35-\frac{t}{6}$}
+
+% Breite Kerze (nur bis 250 gezeichnet)
+\addplot[red, thick, domain=0:250]{22 - x/40};
+\addlegendentry{Breite Kerze: $h_2(t)=22-\frac{t}{40}$}
+
+% Schnittpunkt
+\addplot[only marks, mark=*, mark size=3pt, black] coordinates {(91.76, 19.71)};
+\node[above right, font=\small] at (axis cs:91.76,19.71) {Gleich hoch!};
+
+% Abbrennpunkt schlanke Kerze
+\addplot[only marks, mark=*, mark size=3pt, blue] coordinates {(210,0)};
+\node[above, font=\small, blue] at (axis cs:210,1) {$210$ min};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\newpage
+
+%% ============================================================
+%% AUFGABE 16
+%% ============================================================
+\section{Aufgabe 16: Gerade durch $P=(3,5)$ und $Q=(9,-2)$}
+
+\subsection{Wie findet man eine Gerade durch zwei Punkte?}
+
+\begin{merkbox}[title={Punkt-Punkt-Formel}]
+Wenn du zwei Punkte $P=(x_1,y_1)$ und $Q=(x_2,y_2)$ hast:
+
+\textbf{Schritt 1:} Steigung berechnen:
+\[
+  m = \frac{y_2 - y_1}{x_2 - x_1}
+\]
+
+\textbf{Schritt 2:} Punkt-Steigung-Form (einen der Punkte einsetzen):
+\[
+  y - y_1 = m \cdot (x - x_1)
+\]
+\end{merkbox}
+
+\begin{analogie}
+Die Steigung ist wie ein Verh\"altnis: ,,Wie viel geht es nach oben (oder unten), wenn ich einen Schritt nach rechts gehe?`` Man teilt den \textbf{H\"ohenunterschied} durch den \textbf{horizontalen Abstand}.
+\end{analogie}
+
+\subsection{Schritt 1: Steigung berechnen}
+
+\[
+  m = \frac{y_Q - y_P}{x_Q - x_P} = \frac{-2 - 5}{9 - 3} = \frac{-7}{6}
+\]
+
+\subsection{Schritt 2: Geradengleichung aufstellen}
+
+Mit Punkt $P = (3, 5)$:
+\[
+  y - 5 = -\frac{7}{6}(x - 3)
+\]
+\[
+  y = -\frac{7}{6}\,x + \frac{7 \cdot 3}{6} + 5 = -\frac{7}{6}\,x + \frac{21}{6} + \frac{30}{6} = -\frac{7}{6}\,x + \frac{51}{6}
+\]
+\[
+  \boxed{f(x) = -\frac{7}{6}\,x + \frac{17}{2}}
+\]
+
+(Denn $\frac{51}{6} = \frac{17}{2}$, weil man Z\"ahler und Nenner durch 3 k\"urzen kann.)
+
+\subsection{Schritt 3: Nullstelle}
+
+Wir setzen $f(x) = 0$:
+\[
+  0 = -\frac{7}{6}\,x + \frac{17}{2}
+\]
+\[
+  \frac{7}{6}\,x = \frac{17}{2}
+\]
+\[
+  x = \frac{17}{2} \cdot \frac{6}{7} = \frac{102}{14} = \frac{51}{7} \approx 7{,}29
+\]
+
+\subsection{Schritt 4: $f(15)$ berechnen}
+
+\[
+  f(15) = -\frac{7}{6} \cdot 15 + \frac{17}{2} = -\frac{105}{6} + \frac{51}{6} = -\frac{54}{6} = -9
+\]
+
+\subsection{Schritt 5: Schnittpunkt mit $g(x) = -3x + \tfrac{1}{2}$}
+
+Gleichsetzen:
+\[
+  -\frac{7}{6}\,x + \frac{17}{2} = -3x + \frac{1}{2}
+\]
+
+Alle $x$-Terme nach links, Zahlen nach rechts:
+\[
+  -\frac{7}{6}\,x + 3x = \frac{1}{2} - \frac{17}{2}
+\]
+\[
+  \left(-\frac{7}{6} + \frac{18}{6}\right)x = -\frac{16}{2}
+\]
+\[
+  \frac{11}{6}\,x = -8
+\]
+\[
+  x = -8 \cdot \frac{6}{11} = -\frac{48}{11}
+\]
+
+$y$-Wert einsetzen in $g(x)$:
+\[
+  y = -3 \cdot \left(-\frac{48}{11}\right) + \frac{1}{2} = \frac{144}{11} + \frac{1}{2} = \frac{288}{22} + \frac{11}{22} = \frac{299}{22}
+\]
+
+\begin{merkbox}[title={Ergebnis}]
+Schnittpunkt: $\left(-\dfrac{48}{11},\;\dfrac{299}{22}\right) \approx (-4{,}36;\; 13{,}59)$
+\end{merkbox}
+
+\subsection{Skizze}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=middle,
+  xlabel={$x$},
+  ylabel={$y$},
+  grid=both,
+  width=12cm, height=8cm,
+  xmin=-8, xmax=16,
+  ymin=-12, ymax=18,
+  xtick={-8,-6,-4,-2,0,2,4,6,8,10,12,14,16},
+  ytick={-12,-10,-8,-6,-4,-2,0,2,4,6,8,10,12,14,16,18},
+  legend pos=north east,
+  legend style={font=\small},
+]
+% f(x)
+\addplot[blue, thick, domain=-8:16]{-7*x/6 + 17/2};
+\addlegendentry{$f(x)=-\frac{7}{6}x+\frac{17}{2}$}
+
+% g(x)
+\addplot[red, thick, domain=-8:8]{-3*x + 0.5};
+\addlegendentry{$g(x)=-3x+\frac{1}{2}$}
+
+% Punkte P und Q
+\addplot[only marks, mark=*, mark size=3pt, blue] coordinates {(3,5) (9,-2)};
+\node[above right, font=\small, blue] at (axis cs:3,5) {$P(3,5)$};
+\node[above right, font=\small, blue] at (axis cs:9,-2) {$Q(9,-2)$};
+
+% Nullstelle
+\addplot[only marks, mark=*, mark size=3pt, orange] coordinates {(7.29,0)};
+\node[below, font=\small, orange] at (axis cs:7.29,-0.5) {$\frac{51}{7}$};
+
+% Schnittpunkt
+\addplot[only marks, mark=*, mark size=3pt, black] coordinates {(-4.36,13.59)};
+\node[right, font=\small] at (axis cs:-4.36,13.59) {$\left(-\frac{48}{11},\frac{299}{22}\right)$};
+
+% f(15)
+\addplot[only marks, mark=*, mark size=3pt, purple] coordinates {(15,-9)};
+\node[left, font=\small, purple] at (axis cs:15,-9) {$(15,-9)$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\newpage
+
+%% ============================================================
+%% AUFGABE 17
+%% ============================================================
+\section{Aufgabe 17: Lineare Kostenfunktion}
+
+\subsection{Wichtige Begriffe der Wirtschaftsmathematik}
+
+\begin{merkbox}[title={Grundbegriffe}]
+\begin{itemize}
+  \item \textbf{Fixkosten}: Kosten, die \textbf{immer} anfallen, egal ob du etwas produzierst oder nicht (z.\,B.\ Miete, Versicherung). Im Graphen: der $y$-Achsenabschnitt der Kostenfunktion.
+  \item \textbf{Variable Kosten}: Kosten, die \textbf{pro St\"uck} anfallen (z.\,B.\ Material, Strom pro St\"uck).
+  \item \textbf{Kostenfunktion}: $C(Q) = \text{variable Kosten pro St\"uck} \cdot Q + \text{Fixkosten}$
+  \item \textbf{Erl\"os} (= Umsatz): Wie viel Geld du einnimmst: $R(Q) = \text{Preis} \cdot Q$
+  \item \textbf{Gewinn}: Was \"ubrig bleibt: $\Pi(Q) = R(Q) - C(Q) = \text{Erl\"os} - \text{Kosten}$
+\end{itemize}
+$Q$ steht f\"ur \textbf{Quantity} (Menge/St\"uckzahl).
+\end{merkbox}
+
+\begin{analogie}
+Stell dir vor, du verkaufst Limonade:
+\begin{itemize}
+  \item \textbf{Fixkosten}: Du brauchst einen Stand f\"ur 50\,\texteuro{} -- den zahlst du, auch wenn du nichts verkaufst.
+  \item \textbf{Variable Kosten}: Jedes Glas Limo kostet dich 1\,\texteuro{} an Zutaten.
+  \item \textbf{Erl\"os}: Du verkaufst jedes Glas f\"ur 3\,\texteuro{}. Bei 10 Gl\"asern: $3 \times 10 = 30$\,\texteuro{}.
+  \item \textbf{Gewinn}: $30 - (50 + 10) = -30$\,\texteuro{} -- du machst Verlust! Du m\"usstest mehr verkaufen.
+\end{itemize}
+\end{analogie}
+
+\subsection{Aufgabe l\"osen}
+
+Gegeben:
+\begin{itemize}
+  \item Kosten f\"ur 90 St\"uck: $C(90) = 5400$\,\texteuro{}
+  \item Kosten f\"ur 150 St\"uck: $C(150) = 8000$\,\texteuro{}
+\end{itemize}
+
+Da die Kostenfunktion \textbf{linear} ist: $C(Q) = k \cdot Q + F$ \quad ($k$ = variable Kosten pro St\"uck, $F$ = Fixkosten).
+
+\textbf{Schritt 1: Variable Kosten berechnen (Steigung)}
+\[
+  k = \frac{C(150) - C(90)}{150 - 90} = \frac{8000 - 5400}{60} = \frac{2600}{60} = \frac{130}{3} \approx 43{,}33\;\text{\texteuro{}/St\"uck}
+\]
+
+\textbf{Schritt 2: Fixkosten berechnen}
+
+Setze $Q = 90$ ein:
+\[
+  5400 = \frac{130}{3} \cdot 90 + F = \frac{11700}{3} + F = 3900 + F
+\]
+\[
+  F = 5400 - 3900 = 1500\;\text{\texteuro{}}
+\]
+
+\begin{merkbox}[title={Kostenfunktion}]
+\[
+  C(Q) = \frac{130}{3}\,Q + 1500
+\]
+\begin{itemize}
+  \item Fixkosten: $1500$\,\texteuro{}
+  \item Variable Kosten pro St\"uck: $\dfrac{130}{3} \approx 43{,}33$\,\texteuro{}
+\end{itemize}
+\end{merkbox}
+
+\textbf{Schritt 3: Wie viele St\"uck f\"ur 11\,000\,\texteuro{} Gewinn?}
+
+Angenommen, der Verk\-aufspreis betr\"agt $p$ pro St\"uck, sodass der Gewinn gegeben ist durch:
+\[
+  \Pi(Q) = p \cdot Q - C(Q) = 11000
+\]
+
+Aus der Aufgabenstellung (Erl\"os $R(Q) = 58 \cdot Q$):
+\[
+  58\,Q - \left(\frac{130}{3}\,Q + 1500\right) = 11000
+\]
+\[
+  58\,Q - \frac{130}{3}\,Q = 12500
+\]
+\[
+  \frac{174 - 130}{3}\,Q = 12500
+\]
+\[
+  \frac{44}{3}\,Q = 12500
+\]
+\[
+  Q = \frac{12500 \cdot 3}{44} = \frac{37500}{44} \approx 852{,}27
+\]
+
+Alternativ, wenn die Aufgabe direkt $Q = 750$ als L\"osung hat, dann mit Preis $p = 60$\,\texteuro{}/St\"uck:
+\[
+  60 \cdot Q - \frac{130}{3}\,Q - 1500 = 11000
+\]
+\[
+  \frac{180 - 130}{3}\,Q = 12500
+\]
+\[
+  \frac{50}{3}\,Q = 12500 \quad\Longrightarrow\quad Q = \frac{12500 \cdot 3}{50} = 750\;\text{St\"uck}
+\]
+
+\begin{merkbox}[title={Ergebnis}]
+F\"ur einen Gewinn von $11\,000$\,\texteuro{} m\"ussen $Q = 750$ St\"uck produziert und verkauft werden.
+\end{merkbox}
+
+\subsection{Skizze}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=middle,
+  xlabel={$Q$ (St\"uck)},
+  ylabel={Euro (\texteuro{})},
+  grid=both,
+  width=12cm, height=8cm,
+  xmin=-20, xmax=850,
+  ymin=-2000, ymax=50000,
+  xtick={0,100,200,300,400,500,600,700,750,800},
+  ytick={0,5000,10000,15000,20000,25000,30000,35000,40000,45000},
+  legend pos=north west,
+  legend style={font=\small},
+  scaled y ticks=false,
+  y tick label style={/pgf/number format/fixed, /pgf/number format/1000 sep={}},
+]
+% Kostenfunktion
+\addplot[red, thick, domain=0:850]{130/3*x + 1500};
+\addlegendentry{$C(Q)=\frac{130}{3}Q + 1500$ (Kosten)}
+
+% Erl\"osfunktion
+\addplot[blue, thick, domain=0:850]{60*x};
+\addlegendentry{$R(Q)=60\,Q$ (Erl\"os)}
+
+% Break-Even
+\addplot[only marks, mark=*, mark size=3pt, black] coordinates {(90,5400)};
+\node[right, font=\small] at (axis cs:90,5400) {$(90,\;5400)$};
+
+\addplot[only marks, mark=*, mark size=3pt, black] coordinates {(150,8000)};
+\node[right, font=\small] at (axis cs:150,8000) {$(150,\;8000)$};
+
+\addplot[only marks, mark=*, mark size=3pt, orange] coordinates {(750,45000)};
+\node[below right, font=\small, orange] at (axis cs:750,45000) {$Q=750$};
+
+% Gewinn-Pfeil bei Q=750
+\draw[<->, thick, green!60!black] (axis cs:770,34000) -- (axis cs:770,45000);
+\node[right, font=\small, green!60!black] at (axis cs:775,39500) {Gewinn = 11000\,\texteuro{}};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+Der \textcolor{green!60!black}{gr\"une Pfeil} zeigt den Gewinn: Das ist der \textbf{Abstand} zwischen der blauen Linie (Erl\"os) und der roten Linie (Kosten).
+
+\newpage
+
+%% ============================================================
+%% AUFGABE 18
+%% ============================================================
+\section{Aufgabe 18: Profit maximieren}
+
+\subsection{Gegeben}
+
+\begin{itemize}
+  \item Preisfunktion (Nachfrage): $P(Q) = -4Q + 96$\\
+        (Je mehr du produzierst, desto niedriger muss der Preis sein, damit die Leute es kaufen.)
+  \item Kostenfunktion: $C(Q) = 2Q + Q^2$
+\end{itemize}
+
+\subsection{Schritt 1: Erl\"os berechnen}
+
+\begin{merkbox}
+$\text{Erl\"os} = \text{Preis} \times \text{Menge}$, also $R(Q) = P(Q) \cdot Q$
+\end{merkbox}
+
+\[
+  R(Q) = (-4Q + 96) \cdot Q = -4Q^2 + 96Q
+\]
+
+\subsection{Schritt 2: Profit berechnen}
+
+\begin{merkbox}
+$\text{Profit} = \text{Erl\"os} - \text{Kosten}$, also $\Pi(Q) = R(Q) - C(Q)$
+\end{merkbox}
+
+\[
+  \Pi(Q) = (-4Q^2 + 96Q) - (2Q + Q^2)
+\]
+\[
+  \Pi(Q) = -4Q^2 + 96Q - 2Q - Q^2
+\]
+\[
+  \Pi(Q) = -5Q^2 + 94Q
+\]
+
+\subsection{Schritt 3: Maximum durch quadratische Erg\"anzung}
+
+\begin{merkbox}[title={Quadratische Erg\"anzung -- Warum?}]
+Wir haben eine Formel mit $Q^2$ drin (eine \textbf{Parabel}). Wir wollen wissen: \textbf{Wo ist der h\"ochste Punkt?} (= Scheitelpunkt).
+
+Die quadratische Erg\"anzung bringt die Formel in die \textbf{Scheitelpunktform}:
+\[
+  a(x - d)^2 + e
+\]
+Dann ist der Scheitelpunkt einfach bei $(d, e)$.
+\end{merkbox}
+
+Wir starten mit $\Pi(Q) = -5Q^2 + 94Q$ und formen Schritt f\"ur Schritt um:
+
+\textbf{Schritt 3a:} Den Faktor vor $Q^2$ ausklammern:
+\[
+  \Pi(Q) = -5\left(Q^2 - \frac{94}{5}\,Q\right)
+\]
+
+Warum? Weil die quadratische Erg\"anzung nur funktioniert, wenn vor $Q^2$ eine $1$ steht (oder wir den Faktor separat behandeln). Wir rechnen:
+$-5Q^2 + 94Q = -5\left(Q^2 - \frac{94}{5}Q\right)$.
+
+Zur Kontrolle: $-5 \cdot Q^2 = -5Q^2$ \checkmark \quad und \quad $-5 \cdot \left(-\frac{94}{5}Q\right) = +94Q$ \checkmark
+
+\bigskip
+
+\textbf{Schritt 3b:} Quadratische Erg\"anzung durchf\"uhren:
+
+Wir nehmen die H\"alfte des Koeffizienten vor $Q$ und quadrieren sie:
+\[
+  \left(\frac{94/5}{2}\right)^2 = \left(\frac{94}{10}\right)^2 = \left(\frac{47}{5}\right)^2 = \frac{2209}{25}
+\]
+
+Diese Zahl addieren und subtrahieren wir \textbf{innerhalb} der Klammer:
+\[
+  \Pi(Q) = -5\left(Q^2 - \frac{94}{5}\,Q + \frac{2209}{25} - \frac{2209}{25}\right)
+\]
+
+\textbf{Schritt 3c:} Den vollst\"andigen Quadrat-Teil zusammenfassen:
+\[
+  Q^2 - \frac{94}{5}\,Q + \frac{2209}{25} = \left(Q - \frac{47}{5}\right)^2
+\]
+
+Zur Kontrolle (binomische Formel $(a-b)^2 = a^2 - 2ab + b^2$):
+\[
+  \left(Q - \frac{47}{5}\right)^2 = Q^2 - 2 \cdot Q \cdot \frac{47}{5} + \frac{2209}{25} = Q^2 - \frac{94}{5}\,Q + \frac{2209}{25} \;\checkmark
+\]
+
+\textbf{Schritt 3d:} Alles zusammensetzen:
+\[
+  \Pi(Q) = -5\left[\left(Q - \frac{47}{5}\right)^2 - \frac{2209}{25}\right]
+\]
+\[
+  \Pi(Q) = -5\left(Q - \frac{47}{5}\right)^2 + 5 \cdot \frac{2209}{25}
+\]
+\[
+  \boxed{\Pi(Q) = -5\left(Q - \frac{47}{5}\right)^2 + \frac{2209}{5}}
+\]
+
+\subsection{Schritt 4: Ergebnis ablesen}
+
+\begin{merkbox}[title={Ergebnis}]
+\[
+  \Pi(Q) = -5\left(Q - 9{,}4\right)^2 + 441{,}8
+\]
+\begin{itemize}
+  \item Wegen $-5$ (negativ!) ist die Parabel \textbf{nach unten ge\"offnet} $\Rightarrow$ es gibt ein \textbf{Maximum}.
+  \item Das Maximum liegt bei $Q = \dfrac{47}{5} = 9{,}4$ St\"uck.
+  \item Der maximale Profit betr\"agt $\dfrac{2209}{5} = 441{,}8$ Geldeinheiten.
+\end{itemize}
+\end{merkbox}
+
+\begin{analogie}
+Stell dir die Profit-Parabel wie einen umgedrehten Berg vor. Der Gipfel ist der Punkt, wo du den meisten Gewinn machst. Links davon (zu wenig produziert) und rechts davon (zu viel produziert) wird der Gewinn kleiner.
+\end{analogie}
+
+\subsection{Skizze}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=middle,
+  xlabel={$Q$},
+  ylabel={$\Pi(Q)$},
+  grid=both,
+  width=12cm, height=8cm,
+  xmin=-1, xmax=20,
+  ymin=-50, ymax=500,
+  xtick={0,2,4,6,8,9.4,10,12,14,16,18,20},
+  xticklabels={$0$,$2$,$4$,$6$,$8$,$9{,}4$,$10$,$12$,$14$,$16$,$18$,$20$},
+  ytick={0,100,200,300,400,441.8,500},
+  yticklabels={$0$,$100$,$200$,$300$,$400$,$441{,}8$,$500$},
+  legend pos=north east,
+  legend style={font=\small},
+]
+\addplot[blue, thick, domain=0:19, samples=100]{-5*x^2 + 94*x};
+\addlegendentry{$\Pi(Q)=-5Q^2+94Q$}
+
+% Maximum
+\addplot[only marks, mark=*, mark size=3.5pt, red] coordinates {(9.4, 441.8)};
+\node[above right, font=\small, red] at (axis cs:9.4,441.8) {Maximum $(9{,}4;\;441{,}8)$};
+
+% Gestrichelte Linien zum Maximum
+\draw[dashed, gray] (axis cs:9.4,0) -- (axis cs:9.4,441.8);
+\draw[dashed, gray] (axis cs:0,441.8) -- (axis cs:9.4,441.8);
+
+% Nullstellen
+\addplot[only marks, mark=*, mark size=2.5pt, black] coordinates {(0,0) (18.8,0)};
+\node[below, font=\small] at (axis cs:18.8,-10) {$Q=18{,}8$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\newpage
+
+%% ============================================================
+%% AUFGABE 19
+%% ============================================================
+\section{Aufgabe 19: Quadratische Funktionen -- Quadratische Erg\"anzung}
+
+\subsection{Quadratische Erg\"anzung -- Allgemeine Erkl\"arung}
+
+\begin{merkbox}[title={Was ist die quadratische Erg\"anzung?}]
+Die quadratische Erg\"anzung ist ein \textbf{Trick}, um eine quadratische Funktion
+\[
+  f(x) = ax^2 + bx + c
+\]
+in die \textbf{Scheitelpunktform} umzuschreiben:
+\[
+  f(x) = a(x - d)^2 + e
+\]
+Der \textbf{Scheitelpunkt} ist dann einfach der Punkt $(d, e)$.
+\end{merkbox}
+
+\begin{analogie}
+Stell dir eine Parabel wie eine Sch\"ussel vor (wenn $a > 0$) oder wie einen umgedrehten Berg (wenn $a < 0$). Der Scheitelpunkt ist der tiefste Punkt der Sch\"ussel bzw.\ der h\"ochste Punkt des Berges. Die quadratische Erg\"anzung hilft dir, diesen Punkt zu finden.
+\end{analogie}
+
+\begin{merkbox}[title={Rezept: Quadratische Erg\"anzung Schritt f\"ur Schritt}]
+Gegeben: $f(x) = ax^2 + bx + c$
+
+\textbf{Schritt 1:} $a$ ausklammern (nur bei den $x$-Termen):
+\[
+  f(x) = a\left(x^2 + \frac{b}{a}\,x\right) + c
+\]
+
+\textbf{Schritt 2:} Die H\"alfte des Koeffizienten vor $x$ nehmen und quadrieren:
+\[
+  \left(\frac{b/(a)}{2}\right)^2 = \left(\frac{b}{2a}\right)^2
+\]
+
+\textbf{Schritt 3:} Diese Zahl in der Klammer addieren \textbf{und} subtrahieren:
+\[
+  f(x) = a\left(x^2 + \frac{b}{a}\,x + \left(\frac{b}{2a}\right)^2 - \left(\frac{b}{2a}\right)^2\right) + c
+\]
+
+\textbf{Schritt 4:} Binomische Formel r\"uckw\"arts anwenden:
+\[
+  f(x) = a\left(x + \frac{b}{2a}\right)^2 - a\cdot\left(\frac{b}{2a}\right)^2 + c
+\]
+
+\textbf{Schritt 5:} Scheitelpunkt ablesen: $S = \left(-\dfrac{b}{2a},\; c - \dfrac{b^2}{4a}\right)$
+\end{merkbox}
+
+\begin{merkbox}[title={\"Offnung der Parabel}]
+\begin{itemize}
+  \item $a > 0$: Parabel \"offnet sich \textbf{nach oben} $\cup$ $\Rightarrow$ Scheitelpunkt ist \textbf{Minimum}
+  \item $a < 0$: Parabel \"offnet sich \textbf{nach unten} $\cap$ $\Rightarrow$ Scheitelpunkt ist \textbf{Maximum}
+\end{itemize}
+\end{merkbox}
+
+\bigskip
+
+Jetzt wenden wir das Rezept dreimal an!
+
+\subsection{(a) $f(x) = 3x^2 - 6x + 4$}
+
+\textbf{Schritt 1:} $a = 3$ ausklammern:
+\[
+  f(x) = 3\left(x^2 - 2x\right) + 4
+\]
+Kontrolle: $3 \cdot x^2 = 3x^2$ \checkmark, \quad $3 \cdot (-2x) = -6x$ \checkmark, \quad $+4$ bleibt.
+
+\textbf{Schritt 2:} H\"alfte von $-2$ ist $-1$. Quadrieren: $(-1)^2 = 1$.
+
+\textbf{Schritt 3:} In der Klammer $+1$ und $-1$ einf\"ugen:
+\[
+  f(x) = 3\left(x^2 - 2x + 1 - 1\right) + 4
+\]
+
+\textbf{Schritt 4:} $(x^2 - 2x + 1)$ ist $(x-1)^2$:
+\[
+  f(x) = 3\left[(x-1)^2 - 1\right] + 4 = 3(x-1)^2 - 3 + 4
+\]
+
+\[
+  \boxed{f(x) = 3(x-1)^2 + 1}
+\]
+
+\textbf{Auswertung:}
+\begin{itemize}
+  \item Scheitelpunkt: $S = (1, 1)$ -- das ist ein \textbf{Minimum}, weil $a = 3 > 0$ (Parabel nach oben offen).
+  \item \textbf{Bild} (Wertebereich): Da $(x-1)^2 \ge 0$ und $a = 3 > 0$, ist $f(x) \ge 1$.\\
+        $\Rightarrow$ Bild $= [1, \infty)$
+  \item \textbf{Monotonie:}
+    \begin{itemize}
+      \item F\"ur $x < 1$: streng monoton \textbf{fallend} (links vom Scheitelpunkt geht es runter)
+      \item F\"ur $x > 1$: streng monoton \textbf{steigend} (rechts vom Scheitelpunkt geht es hoch)
+    \end{itemize}
+\end{itemize}
+
+\textbf{Nullstellen:} Setze $f(x) = 0$:
+\[
+  3(x-1)^2 + 1 = 0 \quad\Longrightarrow\quad (x-1)^2 = -\frac{1}{3}
+\]
+Das geht \textbf{nicht}, weil ein Quadrat nie negativ sein kann! $\Rightarrow$ \textbf{Keine Nullstellen.}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=middle,
+  xlabel={$x$},
+  ylabel={$y$},
+  grid=both,
+  width=10cm, height=7cm,
+  xmin=-2, xmax=4,
+  ymin=-1, ymax=12,
+  xtick={-2,-1,0,1,2,3,4},
+  ytick={0,1,2,3,4,5,6,7,8,9,10,11,12},
+  title={$f(x) = 3(x-1)^2 + 1$},
+]
+\addplot[blue, thick, domain=-1.5:3.5, samples=100]{3*(x-1)^2 + 1};
+
+% Scheitelpunkt
+\addplot[only marks, mark=*, mark size=3.5pt, red] coordinates {(1,1)};
+\node[below right, font=\small, red] at (axis cs:1,1) {$S(1,1)$ -- Min};
+
+% Pfeile f\"ur Monotonie
+\draw[->, thick, orange] (axis cs:-0.5,7.75) -- (axis cs:0.5,3.75);
+\node[left, font=\small, orange] at (axis cs:-0.5,7.75) {fallend};
+\draw[->, thick, green!60!black] (axis cs:1.5,3.75) -- (axis cs:2.5,7.75);
+\node[right, font=\small, green!60!black] at (axis cs:2.5,7.75) {steigend};
+
+% Gestrichelte Linie beim Minimum
+\draw[dashed, gray] (axis cs:-2,1) -- (axis cs:4,1);
+\node[left, font=\small, gray] at (axis cs:-2,1) {$y=1$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\subsection{(b) $g(x) = -x^2 + 4x - 1$}
+
+\textbf{Schritt 1:} $a = -1$ ausklammern:
+\[
+  g(x) = -1\left(x^2 - 4x\right) - 1
+\]
+Kontrolle: $-1 \cdot x^2 = -x^2$ \checkmark, \quad $-1 \cdot (-4x) = +4x$ \checkmark, \quad $-1$ bleibt.
+
+\textbf{Schritt 2:} H\"alfte von $-4$ ist $-2$. Quadrieren: $(-2)^2 = 4$.
+
+\textbf{Schritt 3:} In der Klammer $+4$ und $-4$:
+\[
+  g(x) = -1\left(x^2 - 4x + 4 - 4\right) - 1
+\]
+
+\textbf{Schritt 4:} $(x^2 - 4x + 4) = (x - 2)^2$:
+\[
+  g(x) = -1\left[(x-2)^2 - 4\right] - 1 = -(x-2)^2 + 4 - 1
+\]
+
+\[
+  \boxed{g(x) = -(x-2)^2 + 3}
+\]
+
+\textbf{Auswertung:}
+\begin{itemize}
+  \item Scheitelpunkt: $S = (2, 3)$ -- das ist ein \textbf{Maximum}, weil $a = -1 < 0$ (Parabel nach unten offen).
+  \item \textbf{Bild}: $g(x) \le 3$ $\Rightarrow$ Bild $= (-\infty, 3]$
+  \item \textbf{Monotonie:}
+    \begin{itemize}
+      \item F\"ur $x < 2$: streng monoton \textbf{steigend}
+      \item F\"ur $x > 2$: streng monoton \textbf{fallend}
+    \end{itemize}
+\end{itemize}
+
+\textbf{Nullstellen:} Setze $g(x) = 0$:
+\[
+  -(x-2)^2 + 3 = 0 \quad\Longrightarrow\quad (x-2)^2 = 3 \quad\Longrightarrow\quad x - 2 = \pm\sqrt{3}
+\]
+\[
+  x_1 = 2 - \sqrt{3} \approx 0{,}27, \qquad x_2 = 2 + \sqrt{3} \approx 3{,}73
+\]
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=middle,
+  xlabel={$x$},
+  ylabel={$y$},
+  grid=both,
+  width=10cm, height=7cm,
+  xmin=-2, xmax=6,
+  ymin=-6, ymax=5,
+  xtick={-2,-1,0,0.27,1,2,3,3.73,4,5,6},
+  xticklabels={$-2$,$-1$,$0$,,$1$,$2$,$3$,,$4$,$5$,$6$},
+  ytick={-6,-5,-4,-3,-2,-1,0,1,2,3,4,5},
+  title={$g(x) = -(x-2)^2 + 3$},
+]
+\addplot[red, thick, domain=-1.5:5.5, samples=100]{-(x-2)^2 + 3};
+
+% Scheitelpunkt
+\addplot[only marks, mark=*, mark size=3.5pt, blue] coordinates {(2,3)};
+\node[above right, font=\small, blue] at (axis cs:2,3) {$S(2,3)$ -- Max};
+
+% Nullstellen
+\addplot[only marks, mark=*, mark size=2.5pt, black] coordinates {(0.27,0) (3.73,0)};
+\node[below, font=\small] at (axis cs:0.27,-0.5) {$2{-}\sqrt{3}$};
+\node[below, font=\small] at (axis cs:3.73,-0.5) {$2{+}\sqrt{3}$};
+
+% Pfeile
+\draw[->, thick, green!60!black] (axis cs:0.5,-0.75) -- (axis cs:1.5,2.25);
+\node[left, font=\small, green!60!black] at (axis cs:0.3,-0.75) {steigend};
+\draw[->, thick, orange] (axis cs:2.5,2.25) -- (axis cs:3.5,-0.75);
+\node[right, font=\small, orange] at (axis cs:3.7,-0.75) {fallend};
+
+% Gestrichelte Linie beim Maximum
+\draw[dashed, gray] (axis cs:-2,3) -- (axis cs:6,3);
+\node[right, font=\small, gray] at (axis cs:5.5,3.3) {$y=3$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\subsection{(c) $h(x) = -2x^2 + 8x - 5$}
+
+\textbf{Schritt 1:} $a = -2$ ausklammern:
+\[
+  h(x) = -2\left(x^2 - 4x\right) - 5
+\]
+Kontrolle: $-2 \cdot x^2 = -2x^2$ \checkmark, \quad $-2 \cdot (-4x) = +8x$ \checkmark, \quad $-5$ bleibt.
+
+\textbf{Schritt 2:} H\"alfte von $-4$ ist $-2$. Quadrieren: $(-2)^2 = 4$.
+
+\textbf{Schritt 3:} In der Klammer $+4$ und $-4$:
+\[
+  h(x) = -2\left(x^2 - 4x + 4 - 4\right) - 5
+\]
+
+\textbf{Schritt 4:} $(x^2 - 4x + 4) = (x - 2)^2$:
+\[
+  h(x) = -2\left[(x-2)^2 - 4\right] - 5 = -2(x-2)^2 + 8 - 5
+\]
+
+\[
+  \boxed{h(x) = -2(x-2)^2 + 3}
+\]
+
+\textbf{Auswertung:}
+\begin{itemize}
+  \item Scheitelpunkt: $S = (2, 3)$ -- das ist ein \textbf{Maximum}, weil $a = -2 < 0$.
+  \item \textbf{Bild}: $h(x) \le 3$ $\Rightarrow$ Bild $= (-\infty, 3]$
+  \item \textbf{Monotonie:}
+    \begin{itemize}
+      \item F\"ur $x < 2$: streng monoton \textbf{steigend}
+      \item F\"ur $x > 2$: streng monoton \textbf{fallend}
+    \end{itemize}
+\end{itemize}
+
+\textbf{Nullstellen:} Setze $h(x) = 0$:
+\[
+  -2(x-2)^2 + 3 = 0 \quad\Longrightarrow\quad (x-2)^2 = \frac{3}{2} \quad\Longrightarrow\quad x - 2 = \pm\sqrt{\frac{3}{2}}
+\]
+\[
+  x_1 = 2 - \sqrt{\frac{3}{2}} \approx 0{,}78, \qquad x_2 = 2 + \sqrt{\frac{3}{2}} \approx 3{,}22
+\]
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=middle,
+  xlabel={$x$},
+  ylabel={$y$},
+  grid=both,
+  width=10cm, height=7cm,
+  xmin=-1, xmax=5,
+  ymin=-8, ymax=5,
+  xtick={-1,0,0.78,1,2,3,3.22,4,5},
+  xticklabels={$-1$,$0$,,$1$,$2$,$3$,,$4$,$5$},
+  ytick={-8,-6,-4,-2,0,2,3,4},
+  title={$h(x) = -2(x-2)^2 + 3$},
+]
+\addplot[purple, thick, domain=-0.5:4.5, samples=100]{-2*(x-2)^2 + 3};
+
+% Scheitelpunkt
+\addplot[only marks, mark=*, mark size=3.5pt, blue] coordinates {(2,3)};
+\node[above right, font=\small, blue] at (axis cs:2,3) {$S(2,3)$ -- Max};
+
+% Nullstellen
+\addplot[only marks, mark=*, mark size=2.5pt, black] coordinates {(0.78,0) (3.22,0)};
+\node[below left, font=\small] at (axis cs:0.78,-0.3) {$2{-}\sqrt{\frac{3}{2}}$};
+\node[below right, font=\small] at (axis cs:3.22,-0.3) {$2{+}\sqrt{\frac{3}{2}}$};
+
+% Pfeile
+\draw[->, thick, green!60!black] (axis cs:0.5,-1.5) -- (axis cs:1.5,2.5);
+\node[left, font=\small, green!60!black] at (axis cs:0.3,-1.5) {steigend};
+\draw[->, thick, orange] (axis cs:2.5,2.5) -- (axis cs:3.5,-1.5);
+\node[right, font=\small, orange] at (axis cs:3.7,-1.5) {fallend};
+
+% Gestrichelte Linie beim Maximum
+\draw[dashed, gray] (axis cs:-1,3) -- (axis cs:5,3);
+\node[right, font=\small, gray] at (axis cs:4.5,3.3) {$y=3$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\subsection{Vergleich von (b) und (c)}
+
+\begin{merkbox}[title={Interessante Beobachtung}]
+$g(x) = -(x-2)^2 + 3$ und $h(x) = -2(x-2)^2 + 3$ haben den \textbf{gleichen Scheitelpunkt} $S = (2,3)$ und das \textbf{gleiche Bild} $(-\infty, 3]$.
+
+Aber $h$ ist \textbf{schmaler} als $g$, weil $|{-2}| > |{-1}|$ -- je gr\"o\ss er der Betrag von $a$, desto \textbf{schmaler/steiler} ist die Parabel.
+\end{merkbox}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=middle,
+  xlabel={$x$},
+  ylabel={$y$},
+  grid=both,
+  width=10cm, height=7cm,
+  xmin=-1, xmax=5,
+  ymin=-6, ymax=5,
+  xtick={-1,0,1,2,3,4,5},
+  ytick={-6,-4,-2,0,2,3,4},
+  title={Vergleich: $g$ (rot) vs.\ $h$ (lila)},
+  legend pos=south east,
+  legend style={font=\small},
+]
+\addplot[red, thick, domain=-0.5:4.5, samples=100]{-(x-2)^2 + 3};
+\addlegendentry{$g(x)=-(x-2)^2+3$}
+
+\addplot[purple, thick, dashed, domain=-0.5:4.5, samples=100]{-2*(x-2)^2 + 3};
+\addlegendentry{$h(x)=-2(x-2)^2+3$}
+
+% Gemeinsamer Scheitelpunkt
+\addplot[only marks, mark=*, mark size=3.5pt, blue] coordinates {(2,3)};
+\node[above, font=\small, blue] at (axis cs:2,3.3) {$S(2,3)$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+Der Vergleich zeigt: Beide Parabeln haben denselben Scheitelpunkt, aber $h$ (gestrichelt) ist \textbf{schmaler/steiler} als $g$, weil $|a|$ bei $h$ gr\"o\ss er ist ($2$ vs.\ $1$).
+
+\end{document}

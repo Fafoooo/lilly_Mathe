@@ -1,0 +1,570 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{eurosym}
+
+\title{Mathematik -- \"Ubungsblatt 2\\L\"osungen zu den Aufgaben 13--19}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+%=============================================================================
+% AUFGABE 13
+%=============================================================================
+\section*{Aufgabe 13}
+
+Gegeben ist die Funktion
+\[
+  f(x) = \sqrt{\frac{x^2 - 16}{x^2 - x - 6}}.
+\]
+
+\textbf{Definitionsbereich bestimmen:}
+
+Damit die Wurzel definiert ist, muss der Bruch unter der Wurzel $\geq 0$ sein,
+und der Nenner darf nicht Null werden. Zuerst faktorisieren wir Z\"ahler und Nenner:
+\begin{align*}
+  x^2 - 16 &= (x-4)(x+4), \\
+  x^2 - x - 6 &= (x-3)(x+2).
+\end{align*}
+
+Also brauchen wir:
+\[
+  \frac{(x-4)(x+4)}{(x-3)(x+2)} \geq 0 \quad \text{und} \quad x \neq 3, \; x \neq -2.
+\]
+
+Die kritischen Stellen sind $x = -4, \, -2, \, 3, \, 4$. Damit machen wir eine Vorzeichentabelle:
+
+\medskip
+\begin{center}
+\begin{tabular}{c|c|c|c|c|c}
+  Intervall & $(x-4)$ & $(x+4)$ & $(x-3)$ & $(x+2)$ & Bruch \\
+  \hline
+  $(-\infty, -4]$ & $-$ & $-$ & $-$ & $-$ & $+$ \checkmark \\
+  $(-4, -2)$      & $-$ & $+$ & $-$ & $-$ & $-$ \\
+  $(-2, 3)$       & $-$ & $+$ & $-$ & $+$ & $+$ \checkmark \\
+  $(3, 4)$        & $-$ & $+$ & $+$ & $+$ & $-$ \\
+  $[4, \infty)$   & $+$ & $+$ & $+$ & $+$ & $+$ \checkmark \\
+\end{tabular}
+\end{center}
+
+\medskip
+Bei $x = -4$ und $x = 4$ wird der Z\"ahler Null, also $f(-4) = f(4) = 0$ -- das ist erlaubt.
+Bei $x = -2$ und $x = 3$ wird der Nenner Null -- die m\"ussen raus.
+
+Damit ergibt sich der Definitionsbereich:
+\[
+  \boxed{D_f = (-\infty, -4] \cup (-2, 3) \cup [4, \infty)}
+\]
+
+\textbf{Skizze:}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=middle,
+  xlabel=$x$,
+  ylabel=$y$,
+  grid=both,
+  width=12cm,
+  height=8cm,
+  xmin=-8, xmax=8,
+  ymin=-0.5, ymax=6,
+  samples=200,
+  legend pos=north west,
+  every axis plot/.append style={thick},
+]
+% Linker Ast: (-inf, -4]
+\addplot[blue, domain=-8:-4.01, smooth]{sqrt((x^2-16)/(x^2-x-6))};
+% Mittlerer Ast: (-2, 3)
+\addplot[blue, domain=-1.9:2.9, smooth]{sqrt((x^2-16)/(x^2-x-6))};
+% Rechter Ast: [4, inf)
+\addplot[blue, domain=4.01:8, smooth]{sqrt((x^2-16)/(x^2-x-6))};
+% Asymptoten
+\addplot[dashed, red, thin] coordinates {(-2,-0.5) (-2,6)};
+\addplot[dashed, red, thin] coordinates {(3,-0.5) (3,6)};
+% Nullstellen markieren
+\addplot[only marks, mark=*, mark size=2.5pt, blue] coordinates {(-4,0) (4,0)};
+% Asymptotisches Niveau
+\addplot[dashed, gray, thin, domain=-8:8]{1};
+\node[anchor=west] at (axis cs:-1.8,5.5) {\small\color{red}$x=-2$};
+\node[anchor=west] at (axis cs:3.1,5.5) {\small\color{red}$x=3$};
+\node[anchor=south] at (axis cs:6,1.1) {\small\color{gray}$y=1$};
+\legend{$f(x)=\sqrt{\frac{x^2-16}{x^2-x-6}}$}
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+Man sieht: Bei $x = -2$ und $x = 3$ gibt es senkrechte Asymptoten,
+Nullstellen bei $x = -4$ und $x = 4$, und f\"ur $x \to \pm\infty$ geht $f(x) \to 1$.
+
+
+%=============================================================================
+% AUFGABE 14
+%=============================================================================
+\section*{Aufgabe 14}
+
+Gesucht ist eine lineare Funktion mit Steigung $m = \tfrac{1}{4}$ und $f(8) = -\tfrac{29}{4}$.
+
+\textbf{Funktionsgleichung:}
+
+Ansatz: $f(x) = \tfrac{1}{4}x + b$. Einsetzen von $f(8) = -\tfrac{29}{4}$:
+\[
+  \frac{1}{4} \cdot 8 + b = -\frac{29}{4}
+  \quad\Longrightarrow\quad
+  2 + b = -\frac{29}{4}
+  \quad\Longrightarrow\quad
+  b = -\frac{29}{4} - \frac{8}{4} = -\frac{37}{4}
+\]
+
+Also:
+\[
+  \boxed{f(x) = \frac{1}{4}x - \frac{37}{4} = \frac{x - 37}{4}}
+\]
+
+\textbf{Nullstelle (Schnittpunkt mit der $x$-Achse):}
+\[
+  f(x) = 0 \quad\Longrightarrow\quad \frac{x-37}{4} = 0 \quad\Longrightarrow\quad x = 37
+\]
+
+\textbf{Schnittpunkt mit der $y$-Achse:}
+\[
+  f(0) = -\frac{37}{4} = -9{,}25
+\]
+
+\textbf{Monotonie:} Da $m = \tfrac{1}{4} > 0$, ist $f$ streng monoton steigend.
+
+\textbf{Skizze:}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=middle,
+  xlabel=$x$,
+  ylabel=$y$,
+  grid=both,
+  width=10cm,
+  height=7cm,
+  xmin=-5, xmax=42,
+  ymin=-12, ymax=3,
+  samples=50,
+]
+\addplot[blue, thick, domain=-5:42]{(x-37)/4};
+% Markierte Punkte
+\addplot[only marks, mark=*, mark size=2.5pt, red] coordinates {(0,-9.25) (37,0) (8,-7.25)};
+\node[anchor=south west] at (axis cs:0.5,-9.25) {\small$(0, -\frac{37}{4})$};
+\node[anchor=north west] at (axis cs:37,0.3) {\small$(37, 0)$};
+\node[anchor=south west] at (axis cs:8.5,-7.25) {\small$(8, -\frac{29}{4})$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+%=============================================================================
+% AUFGABE 15
+%=============================================================================
+\section*{Aufgabe 15}
+
+Zwei Kerzen werden gleichzeitig angez\"undet.
+
+\begin{itemize}
+  \item \textbf{Schmale Kerze:} 35\,cm lang, brennt 10\,cm pro Stunde ab, also $\tfrac{1}{6}$\,cm pro Minute.
+  \item \textbf{Breite Kerze:} 22\,cm lang, brennt 15\,mm = 1{,}5\,cm pro Stunde ab, also $\tfrac{1}{40}$\,cm pro Minute.
+\end{itemize}
+
+Die H\"ohenfunktionen (in cm, $t$ in Minuten) sind:
+\begin{align*}
+  h_1(t) &= 35 - \frac{t}{6} \quad \text{(schmal)}, \\
+  h_2(t) &= 22 - \frac{t}{40} \quad \text{(breit)}.
+\end{align*}
+
+\textbf{Wann sind beide gleich hoch?}
+\begin{align*}
+  35 - \frac{t}{6} &= 22 - \frac{t}{40} \\
+  13 &= \frac{t}{6} - \frac{t}{40} = \frac{20t - 3t}{120} = \frac{17t}{120} \\
+  t &= \frac{13 \cdot 120}{17} = \frac{1560}{17} \approx 91{,}76 \text{ Minuten}
+\end{align*}
+
+Das sind ca.\ 1 Stunde und 31{,}8 Minuten. Die gemeinsame H\"ohe ist dann:
+\[
+  h_1\!\left(\frac{1560}{17}\right) = 35 - \frac{1560}{17 \cdot 6} = 35 - \frac{260}{17} = \frac{595 - 260}{17} = \frac{335}{17} \approx 19{,}71 \text{ cm}.
+\]
+
+\textbf{Maximale Brenndauer:}
+\begin{align*}
+  \text{Schmal: } h_1(t) = 0 &\quad\Longrightarrow\quad t = 35 \cdot 6 = 210 \text{ min} = 3 \text{ h } 30 \text{ min}, \\
+  \text{Breit: } h_2(t) = 0 &\quad\Longrightarrow\quad t = 22 \cdot 40 = 880 \text{ min} = 14 \text{ h } 40 \text{ min}.
+\end{align*}
+
+\textbf{Skizze:}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=middle,
+  xlabel={$t$ (min)},
+  ylabel={H\"ohe (cm)},
+  grid=both,
+  width=11cm,
+  height=7cm,
+  xmin=0, xmax=250,
+  ymin=0, ymax=38,
+  legend pos=north east,
+]
+\addplot[blue, thick, domain=0:210]{35 - x/6};
+\addplot[red, thick, domain=0:240]{22 - x/40};
+% Schnittpunkt
+\addplot[only marks, mark=*, mark size=2.5pt, black] coordinates {(91.76,19.71)};
+\node[anchor=south west] at (axis cs:93,19.71) {\small$(\frac{1560}{17}, \frac{335}{17})$};
+\legend{Schmale Kerze $h_1(t)$, Breite Kerze $h_2(t)$}
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+%=============================================================================
+% AUFGABE 16
+%=============================================================================
+\section*{Aufgabe 16}
+
+Gegeben: $P = (3, 5)$ und $Q = (9, -2)$.
+
+\textbf{(a) Geradengleichung:}
+
+Steigung:
+\[
+  m = \frac{-2 - 5}{9 - 3} = \frac{-7}{6}
+\]
+
+Punkt-Steigung-Form mit $P = (3,5)$:
+\[
+  f(x) = 5 + \left(-\frac{7}{6}\right)(x - 3) = -\frac{7}{6}x + \frac{7}{2} + 5 = -\frac{7}{6}x + \frac{17}{2}
+\]
+
+\[
+  \boxed{f(x) = -\frac{7}{6}x + \frac{17}{2}}
+\]
+
+Probe: $f(3) = -\frac{21}{6} + \frac{17}{2} = -\frac{7}{2} + \frac{17}{2} = 5$ \checkmark, \quad
+$f(9) = -\frac{63}{6} + \frac{17}{2} = -\frac{21}{2} + \frac{17}{2} = -2$ \checkmark
+
+\textbf{(b) Nullstelle:}
+\[
+  -\frac{7}{6}x + \frac{17}{2} = 0
+  \quad\Longrightarrow\quad
+  x = \frac{17}{2} \cdot \frac{6}{7} = \frac{51}{7} \approx 7{,}29
+\]
+
+\textbf{(c) Funktionswert bei $x = 15$:}
+\[
+  f(15) = -\frac{7 \cdot 15}{6} + \frac{17}{2} = -\frac{105}{6} + \frac{51}{6} = -\frac{54}{6} = -9
+\]
+
+\textbf{(d) Schnittpunkt mit $g(x) = -3x + \tfrac{1}{2}$:}
+\begin{align*}
+  -\frac{7}{6}x + \frac{17}{2} &= -3x + \frac{1}{2} \\[4pt]
+  -\frac{7}{6}x + 3x &= \frac{1}{2} - \frac{17}{2} \\[4pt]
+  -\frac{7x}{6} + \frac{18x}{6} &= -8 \\[4pt]
+  \frac{11x}{6} &= -8 \\[4pt]
+  x &= -\frac{48}{11}
+\end{align*}
+
+Den $y$-Wert berechne ich \"uber $g$:
+\[
+  y = g\!\left(-\frac{48}{11}\right) = -3 \cdot \left(-\frac{48}{11}\right) + \frac{1}{2} = \frac{144}{11} + \frac{1}{2} = \frac{288 + 11}{22} = \frac{299}{22}
+\]
+
+\[
+  \boxed{S = \left(-\frac{48}{11}, \; \frac{299}{22}\right)}
+\]
+
+\textbf{Skizze:}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=middle,
+  xlabel=$x$,
+  ylabel=$y$,
+  grid=both,
+  width=11cm,
+  height=8cm,
+  xmin=-8, xmax=12,
+  ymin=-10, ymax=18,
+  legend pos=north east,
+]
+\addplot[blue, thick, domain=-8:12]{-7*x/6 + 17/2};
+\addplot[red, thick, domain=-8:12]{-3*x + 0.5};
+% Punkte P und Q
+\addplot[only marks, mark=*, mark size=2.5pt, black] coordinates {(3,5) (9,-2)};
+\node[anchor=south west] at (axis cs:3,5) {\small$P(3,5)$};
+\node[anchor=north west] at (axis cs:9,-2) {\small$Q(9,-2)$};
+% Schnittpunkt
+\addplot[only marks, mark=*, mark size=3pt, green!60!black] coordinates {(-4.3636,13.59)};
+\node[anchor=south east] at (axis cs:-4.3636,13.59) {\small$S(-\frac{48}{11}, \frac{299}{22})$};
+% Nullstelle
+\addplot[only marks, mark=*, mark size=2.5pt, blue] coordinates {(7.2857,0)};
+\node[anchor=north west] at (axis cs:7.2857,0) {\small$(\frac{51}{7}, 0)$};
+\legend{$f(x) = -\frac{7}{6}x + \frac{17}{2}$, $g(x) = -3x + \frac{1}{2}$}
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+%=============================================================================
+% AUFGABE 17
+%=============================================================================
+\section*{Aufgabe 17}
+
+Lineare Kostenfunktion $C(Q) = mQ + b$. Gegeben: $C(150) = 8000$ und $C(225) = 11250$.
+
+\textbf{(a) Kostenfunktion bestimmen:}
+
+Steigung (= variable Kosten pro St\"uck):
+\[
+  m = \frac{11250 - 8000}{225 - 150} = \frac{3250}{75} = \frac{130}{3} \approx 43{,}33 \text{ \euro/St\"uck}
+\]
+
+$y$-Achsenabschnitt (= Fixkosten):
+\[
+  b = 8000 - \frac{130}{3} \cdot 150 = 8000 - 6500 = 1500
+\]
+
+Also:
+\[
+  \boxed{C(Q) = \frac{130}{3}\,Q + 1500}
+\]
+
+\textbf{(b) Fixkosten und variable Kosten:}
+\begin{itemize}
+  \item Fixkosten: $b = 1500$ \euro
+  \item Variable Kosten pro St\"uck: $m = \frac{130}{3} \approx 43{,}33$ \euro
+\end{itemize}
+
+\textbf{(c) Wie viele St\"uck f\"ur 11\,000\,\euro{} Gewinn?}
+
+Der Erl\"os pro St\"uck ist 60\,\euro, also $R(Q) = 60Q$. Der Gewinn ist:
+\[
+  G(Q) = R(Q) - C(Q) = 60Q - \frac{130}{3}Q - 1500 = \frac{180Q - 130Q}{3} - 1500 = \frac{50}{3}Q - 1500
+\]
+
+Setze $G(Q) = 11000$:
+\[
+  \frac{50}{3}Q - 1500 = 11000
+  \quad\Longrightarrow\quad
+  \frac{50}{3}Q = 12500
+  \quad\Longrightarrow\quad
+  \boxed{Q = 750}
+\]
+
+\textbf{Skizze:}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=middle,
+  xlabel={$Q$ (St\"uck)},
+  ylabel={\euro},
+  grid=both,
+  width=11cm,
+  height=7cm,
+  xmin=0, xmax=200,
+  ymin=0, ymax=14000,
+  legend pos=north west,
+]
+% Kostenfunktion
+\addplot[red, thick, domain=0:200]{130/3*x + 1500};
+% Erloesfunktion
+\addplot[blue, thick, domain=0:200]{60*x};
+% Break-Even-Punkt: 60Q = 130/3 Q + 1500 => (50/3)Q = 1500 => Q = 90
+\addplot[only marks, mark=*, mark size=3pt, black] coordinates {(90,5400)};
+\node[anchor=south west] at (axis cs:92,5400) {\small Break-Even $(90, 5400)$};
+% Gegebene Punkte
+\addplot[only marks, mark=square*, mark size=2.5pt, red] coordinates {(150,8000) (225,11250)};
+\node[anchor=south east] at (axis cs:148,8000) {\small$(150, 8000)$};
+\legend{Kosten $C(Q)$, Erl\"os $R(Q)$}
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+%=============================================================================
+% AUFGABE 18
+%=============================================================================
+\section*{Aufgabe 18}
+
+Gegeben: Preis-Absatz-Funktion $P(Q) = -4Q + 96$, Kostenfunktion $C(Q) = 2Q + Q^2$.
+
+\textbf{Erl\"os:}
+\[
+  R(Q) = P(Q) \cdot Q = (-4Q + 96) \cdot Q = -4Q^2 + 96Q
+\]
+
+\textbf{Gewinnfunktion:}
+\[
+  \Pi(Q) = R(Q) - C(Q) = -4Q^2 + 96Q - 2Q - Q^2 = -5Q^2 + 94Q
+\]
+
+\textbf{Maximum durch quadratische Erg\"anzung} (ohne Ableitung):
+\begin{align*}
+  \Pi(Q) &= -5Q^2 + 94Q \\
+         &= -5\!\left(Q^2 - \frac{94}{5}Q\right) \\
+         &= -5\!\left(Q^2 - \frac{94}{5}Q + \left(\frac{47}{5}\right)^{\!2} - \left(\frac{47}{5}\right)^{\!2}\right) \\
+         &= -5\!\left(Q - \frac{47}{5}\right)^{\!2} + 5 \cdot \frac{2209}{25} \\
+         &= -5\!\left(Q - \frac{47}{5}\right)^{\!2} + \frac{2209}{5}
+\end{align*}
+
+Da der Koeffizient vor der Klammer negativ ist ($-5 < 0$), liegt ein \textbf{Maximum} vor bei:
+\[
+  \boxed{Q^* = \frac{47}{5} = 9{,}4}
+\]
+\[
+  \boxed{\Pi_{\max} = \frac{2209}{5} = 441{,}80}
+\]
+
+\textbf{Skizze:}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=middle,
+  xlabel=$Q$,
+  ylabel={\euro},
+  grid=both,
+  width=10cm,
+  height=7cm,
+  xmin=0, xmax=20,
+  ymin=-50, ymax=500,
+  legend pos=north east,
+]
+\addplot[blue, thick, domain=0:19, samples=100]{-5*x^2 + 94*x};
+% Maximum
+\addplot[only marks, mark=*, mark size=3pt, red] coordinates {(9.4,441.8)};
+\node[anchor=south] at (axis cs:9.4,445) {\small$(9{,}4;\; 441{,}8)$};
+\legend{$\Pi(Q) = -5Q^2 + 94Q$}
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+%=============================================================================
+% AUFGABE 19
+%=============================================================================
+\section*{Aufgabe 19}
+
+\subsection*{(a) $f(x) = 3x^2 - 6x + 4$}
+
+Quadratische Erg\"anzung:
+\[
+  f(x) = 3(x^2 - 2x) + 4 = 3(x^2 - 2x + 1 - 1) + 4 = 3(x-1)^2 - 3 + 4 = 3(x-1)^2 + 1
+\]
+
+\begin{itemize}
+  \item \textbf{Scheitel:} $S = (1, 1)$ -- es ist ein Minimum, weil $a = 3 > 0$ (nach oben ge\"offnet).
+  \item \textbf{Bild:} $f(D_f) = [1, \infty)$
+  \item \textbf{Monotonie:} Streng monoton fallend auf $(-\infty, 1]$, streng monoton steigend auf $[1, \infty)$.
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=middle,
+  xlabel=$x$,
+  ylabel=$y$,
+  grid=both,
+  width=10cm,
+  height=7cm,
+  xmin=-2, xmax=4,
+  ymin=-1, ymax=15,
+  samples=100,
+]
+\addplot[blue, thick, domain=-1.5:3.5]{3*x^2 - 6*x + 4};
+\addplot[only marks, mark=*, mark size=3pt, red] coordinates {(1,1)};
+\node[anchor=north west] at (axis cs:1,1) {\small$S(1, 1)$};
+\legend{$f(x) = 3(x-1)^2 + 1$}
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+\subsection*{(b) $g(x) = -x^2 + 4x - 1$}
+
+Quadratische Erg\"anzung:
+\[
+  g(x) = -(x^2 - 4x) - 1 = -(x^2 - 4x + 4 - 4) - 1 = -(x-2)^2 + 4 - 1 = -(x-2)^2 + 3
+\]
+
+\begin{itemize}
+  \item \textbf{Scheitel:} $S = (2, 3)$ -- es ist ein Maximum, weil $a = -1 < 0$ (nach unten ge\"offnet).
+  \item \textbf{Bild:} $g(D_g) = (-\infty, 3]$
+  \item \textbf{Monotonie:} Streng monoton steigend auf $(-\infty, 2]$, streng monoton fallend auf $[2, \infty)$.
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=middle,
+  xlabel=$x$,
+  ylabel=$y$,
+  grid=both,
+  width=10cm,
+  height=7cm,
+  xmin=-2, xmax=6,
+  ymin=-10, ymax=5,
+  samples=100,
+]
+\addplot[red, thick, domain=-1.5:5.5]{-x^2 + 4*x - 1};
+\addplot[only marks, mark=*, mark size=3pt, blue] coordinates {(2,3)};
+\node[anchor=south west] at (axis cs:2,3) {\small$S(2, 3)$};
+\legend{$g(x) = -(x-2)^2 + 3$}
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+\subsection*{(c) $h(x) = -2x^2 + 8x - 5$}
+
+Quadratische Erg\"anzung:
+\[
+  h(x) = -2(x^2 - 4x) - 5 = -2(x^2 - 4x + 4 - 4) - 5 = -2(x-2)^2 + 8 - 5 = -2(x-2)^2 + 3
+\]
+
+\begin{itemize}
+  \item \textbf{Scheitel:} $S = (2, 3)$ -- es ist ein Maximum, weil $a = -2 < 0$ (nach unten ge\"offnet).
+  \item \textbf{Bild:} $h(D_h) = (-\infty, 3]$
+  \item \textbf{Monotonie:} Streng monoton steigend auf $(-\infty, 2]$, streng monoton fallend auf $[2, \infty)$.
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=middle,
+  xlabel=$x$,
+  ylabel=$y$,
+  grid=both,
+  width=10cm,
+  height=7cm,
+  xmin=-1, xmax=5,
+  ymin=-10, ymax=5,
+  samples=100,
+]
+\addplot[green!60!black, thick, domain=-0.5:4.5]{-2*x^2 + 8*x - 5};
+\addplot[only marks, mark=*, mark size=3pt, blue] coordinates {(2,3)};
+\node[anchor=south west] at (axis cs:2,3) {\small$S(2, 3)$};
+\legend{$h(x) = -2(x-2)^2 + 3$}
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\bigskip
+\textit{Anmerkung:} Die Funktionen $g$ und $h$ haben denselben Scheitelpunkt $(2, 3)$, aber $h$ ist ``schmaler'' (weil $|{-2}| > |{-1}|$), also f\"allt $h$ schneller ab als $g$.
+
+\end{document}
